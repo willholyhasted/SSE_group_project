@@ -49,7 +49,7 @@ jobs:
       - name: ImPaaS-Deploy
         uses: /impaas/impaas-deploy@v3
         with:
-          app-name: superfive-sse-app-2425
+          app-name: wh1124-app
           deployment-token: ${{ secrets.IMPAAS_DEPLOY_TOKEN }}
           method: PLATFORM
           # id deploy-token-cc2224
