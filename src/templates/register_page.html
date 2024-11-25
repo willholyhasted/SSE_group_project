@@ -5,172 +5,166 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background: #f0f4f8; /* Light background */
-            color: #333;
+            box-sizing: border-box;
         }
-        .banner {
-            background-color: #ffeb3b; /* Yellow banner */
-            padding: 20px;
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff; /* Light blue background */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .header {
+            background-color: #ffd700; /* Vibrant yellow */
+            color: black;
+            padding: 30px 0;
             text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
+            font-size: 30px;
+            letter-spacing: 1px;
+            font-weight: 600; /* Same font weight as 'Create Your Account' */
         }
-        .register-container {
-            background: white;
-            margin: 20px auto;
-            padding: 30px 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            overflow-y: auto;
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
+
         h2 {
             text-align: center;
-            margin-bottom: 30px;
-            color: #1565c0; /* Blue title */
-        }
-        .form-group {
+            font-size: 28px;
+            color: #003366; /* Deep blue */
             margin-bottom: 20px;
+            font-weight: 600; /* Same font weight as the header */
         }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #0d47a1;
-        }
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            font-size: 15px;
-            border: 1px solid #cfd8dc;
-            border-radius: 8px;
-            transition: 0.3s ease;
-        }
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: #1565c0;
-            outline: none;
-            box-shadow: 0 0 8px rgba(21, 101, 192, 0.2);
-        }
-        .form-group textarea {
-            resize: vertical;
-        }
-        .gender-options {
+
+        form {
             display: flex;
-            justify-content: space-between;
-            gap: 10px;
-            margin-top: 10px;
+            flex-direction: column;
+            gap: 20px;
         }
-        .gender-options input {
-            margin-right: 5px;
+
+        label {
+            font-size: 18px;
+            color: #003366;
         }
-        .form-actions {
-            text-align: center;
-            margin-top: 30px;
+
+        input[type="text"],
+        input[type="password"],
+        input[type="url"],
+        input[type="email"],
+        select,
+        textarea {
+            padding: 15px;
+            font-size: 16px;
+            border: 2px solid #ffd700; /* Matching yellow */
+            border-radius: 5px;
+            background-color: #fafafa;
+            transition: border-color 0.3s ease;
         }
-        .form-actions button {
-            background-color: #1565c0;
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="url"]:focus,
+        input[type="email"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #003366; /* Blue border on focus */
+            outline: none;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 18px;
+            background-color: #003366; /* Deep blue */
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-size: 16px;
+            border-radius: 5px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease;
         }
-        .form-actions button:hover {
-            background-color: #0d47a1;
-            transform: scale(1.05);
+
+        button:hover {
+            background-color: #00508b; /* Darker blue */
         }
-        footer {
-            margin-top: 20px;
+
+        .register-link {
             text-align: center;
-            font-size: 14px;
-            color: #666;
+            margin-top: 20px;
         }
-        footer a {
-            color: #1565c0;
+
+        .register-link a {
+            font-size: 16px;
+            color: #ff6f61; /* Coral red */
             text-decoration: none;
         }
-        footer a:hover {
+
+        .register-link a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="banner">Welcome to the Registration Page</div>
-    <div class="register-container">
+    <div class="header">Welcome to the Registration Page</div>
+    <div class="container">
         <h2>Create Your Account</h2>
         <form>
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+            <label for="course">Course</label>
+            <input type="text" id="course" name="course" placeholder="Enter your course" required>
+
+            <label for="year">Year</label>
+            <select id="year" name="year" required>
+                <option value="">Select your year</option>
+                <option value="1">1st Year</option>
+                <option value="2">2nd Year</option>
+                <option value="3">3rd Year</option>
+                <option value="4">4th Year</option>
+            </select>
+
+            <label for="github">GitHub</label>
+            <input type="url" id="github" name="github" placeholder="Enter your GitHub profile link">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+            <label for="interests">Interests</label>
+            <textarea id="interests" name="interests" placeholder="List your interests" rows="3"></textarea>
+
+            <label for="field">Fields</label>
+            <select id="field" name="field" required>
+                <option value="">Select your field</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Engineering">Engineering</option>
+                <option value="Arts">Arts</option>
+                <option value="Business">Business</option>
+                <option value="Science">Science</option>
+            </select>
+
+            <label>Gender</label>
+            <div>
+                <label><input type="radio" id="male" name="gender" value="Male" required> Male</label>
+                <label><input type="radio" id="female" name="gender" value="Female" required> Female</label>
+                <label><input type="radio" id="other" name="gender" value="Other" required> Other</label>
             </div>
-            <div class="form-group">
-                <label for="course">Course</label>
-                <input type="text" id="course" name="course" placeholder="Enter your course" required>
-            </div>
-            <div class="form-group">
-                <label for="year">Year</label>
-                <select id="year" name="year" required>
-                    <option value="">Select your year</option>
-                    <option value="1">1st Year</option>
-                    <option value="2">2nd Year</option>
-                    <option value="3">3rd Year</option>
-                    <option value="4">4th Year</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="github">GitHub</label>
-                <input type="url" id="github" name="github" placeholder="Enter your GitHub profile link">
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Create a password" required>
-            </div>
-            <div class="form-group">
-                <label for="interests">Interests</label>
-                <textarea id="interests" name="interests" placeholder="List your interests" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="field">Fields</label>
-                <select id="field" name="field" required>
-                    <option value="">Select your field</option>
-                    <option value="Computer Science">Computer Science</option>
-                    <option value="Engineering">Engineering</option>
-                    <option value="Arts">Arts</option>
-                    <option value="Business">Business</option>
-                    <option value="Science">Science</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Gender</label>
-                <div class="gender-options">
-                    <label><input type="radio" id="male" name="gender" value="Male" required> Male</label>
-                    <label><input type="radio" id="female" name="gender" value="Female" required> Female</label>
-                    <label><input type="radio" id="other" name="gender" value="Other" required> Other</label>
-                </div>
-            </div>
-            <div class="form-actions">
-                <button type="submit">Register</button>
-            </div>
+
+            <button type="submit">Register</button>
         </form>
-        <footer>
+        <div class="register-link">
             Already have an account? <a href="#">Log in</a>
-        </footer>
+        </div>
     </div>
 </body>
 </html>
-
