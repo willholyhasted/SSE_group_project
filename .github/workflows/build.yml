@@ -52,6 +52,6 @@ jobs:
           app-name: wh1124-app
           deployment-token: ${{ secrets.IMPAAS_DEPLOY_TOKEN }}
           method: PLATFORM
-          # id deploy-token-cc2224
-          # team superfive2425
-          # app superfive-sse-app-2425
+          # id deploy-token-wh1124v2
+          # team super5
+          # app wh1124-app
