@@ -100,3 +100,159 @@ button:hover {
 .register-link a:hover {
     text-decoration: underline;
 }
+
+
+.header-projects {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffd700; /* Vivid coral red */
+    color: black;
+    padding: 20px 40px;
+    font-size: 30px;
+}
+
+.project-name {
+    font-weight: bold;
+}
+
+.app-name {
+    font-weight: bold;
+}
+
+/* Container for the applicant list */
+.container-projects {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Applicant List */
+.applicant {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.applicant:last-child {
+    border-bottom: none;
+}
+
+/* Clickable applicant names */
+.applicant-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #003366; /* Deep blue for applicant names */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.applicant-name:hover {
+    color: #007bff; /* Change color on hover */
+    text-decoration: underline;
+}
+
+/* Major styling */
+.major {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Buttons container */
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* Button styling */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.accept {
+    background-color: #28a745;
+    color: white;
+}
+
+.accept:hover {
+    background-color: #218838;
+}
+
+.decline {
+    background-color: #dc3545;
+    color: white;
+}
+
+.decline:hover {
+    background-color: #c82333;
+}
+
+
+/* Profile Container */
+.profile-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 20px;
+}
+
+/* Left Section */
+.profile-left {
+    flex: 1.3;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.profile-left p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.profile-left ul {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.profile-left a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.profile-left a:hover {
+    text-decoration: underline;
+}
+
+/* Right Section */
+.profile-right {
+    flex: 2;
+    padding: 20px;
+}
+
+.profile-right h2 {
+    font-size: 24px;
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+.profile-right p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
