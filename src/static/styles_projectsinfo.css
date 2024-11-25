@@ -1,0 +1,65 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f0f8ff; /* Light blue background */
+    color: #333; /* Default text color */
+    line-height: 1.6; /* Improve text readability */
+}
+
+/* Header Style */
+.header {
+    text-align: center;
+    background-color: #FFD700; /* Gold background */
+    padding: 20px 0;
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    letter-spacing: 1px;
+}
+
+/* Main Section */
+.main {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    background-color: #f4f4f4; /* Light gray background */
+}
+
+/* Project Details Container */
+.project-details {
+    background-color: #fff; /* White background */
+    border: 2px solid #FFD700; /* Gold border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    padding: 2rem;
+    max-width: 800px;
+    width: 100%;
+}
+
+.project-details h2 {
+    font-size: 2rem;
+    color: #007BFF; /* Blue color for project title */
+    margin-bottom: 1rem;
+}
+
+.project-details p {
+    margin: 0.5rem 0;
+    color: #555; /* Medium gray for text */
+}
+
+.project-details .description {
+    font-style: italic;
+    color: #666; /* Lighter gray for description */
+}
+
+.project-details a {
+    color: #007BFF; /* Blue link for email */
+    text-decoration: none; /* Remove underline */
+}
+
+.project-details a:hover {
+    text-decoration: underline; /* Add underline on hover */
+}

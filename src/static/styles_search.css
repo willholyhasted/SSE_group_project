@@ -1,0 +1,95 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f0f8ff; /* Light blue background */
+    color: #333; /* Default text color */
+    line-height: 1.6; /* Improve text readability */
+}
+
+/* Header Style */
+.header {
+    text-align: center;
+    background-color: #FFD700; /* Gold background */
+    padding: 20px 0;
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    letter-spacing: 1px;
+}
+
+/* Main Section */
+.main {
+    padding: 2rem;
+    background-color: #f4f4f4; /* Light gray background */
+}
+
+/* Projects Container */
+.projects-container {
+    display: flex;
+    flex-direction: column; /* Vertical layout for rows */
+    gap: 1rem; /* Space between rows */
+    max-width: 900px;
+    margin: auto; /* Center align */
+}
+
+/* Project Row */
+.project-row {
+    display: flex;
+    justify-content: space-between; /* Space between project info and button */
+    align-items: center; /* Center vertically */
+    background-color: #ffffff; /* White background */
+    border: 2px solid #FFD700; /* Gold border */
+    border-radius: 10px; /* Rounded corners */
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    text-decoration: none; /* Remove link underline */
+    color: inherit; /* Inherit text color */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-row:hover {
+    transform: translateY(-5px); /* Lift row on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Darker shadow */
+    background-color: #fff8dc; /* Slightly lighter background */
+}
+
+/* Project Info */
+.project-info {
+    flex: 1; /* Allow text to take up most space */
+    margin-right: 1rem; /* Add space between info and button */
+}
+
+.project-info h2 {
+    font-size: 1.5rem;
+    color: #007BFF; /* Blue color for project titles */
+    margin-bottom: 0.5rem;
+}
+
+.project-info p {
+    margin: 0.5rem 0;
+    color: #555; /* Medium gray text */
+}
+
+.project-info .description {
+    font-style: italic;
+    color: #666; /* Lighter gray for description */
+}
+
+/* Apply Button */
+.apply-button {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    background-color: #007BFF; /* Blue button background */
+    color: white; /* White text */
+    border: none;
+    border-radius: 5px; /* Rounded button corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.apply-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
