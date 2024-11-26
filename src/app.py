@@ -6,6 +6,7 @@ from string import Template
 from pathlib import Path
 import os
 from flask import Flask, render_template, request
+import bcrypt
 app = Flask(__name__)
 
 #read in configuration file parameters from secret.ini and user_info.ini
@@ -35,7 +36,32 @@ def login():
 
     user_info = polars.read_database(command, connection= ui_conn)
 
+    #salt = bcrypt.gensalt() #this creates a 60 character hash
+    #hash_pswd = bcrypt.hashpw(input_password.encode(), salt)
 
-    return render_template("main.html")
+    hashed_password = user_info[0,"password"]
+    if bcrypt.checkpw(input_password.encode(), hashed_password):
+        return render_template("main.html")
+    else:
+        return render_template("index.html")
 
 
+
+def login_test():
+    input_username = "danny"
+    input_password = "hello"
+
+    command = f"""
+    SELECT username, password
+    FROM user_info
+    WHERE username = '{input_username}'
+    """
+
+    user_info = polars.read_database(command, connection= ui_conn)
+
+    print(user_info)
+
+    return
+
+if __name__ == "__main__":
+    login_test()
