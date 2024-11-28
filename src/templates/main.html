@@ -1,34 +1,194 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Group Matcher</title>
-    <link rel="stylesheet" href="../static/styles_main.css">
-</head>
-<body>
-    <header class="header">
-        <h1>Let's Match the Project Group!</h1>
-        <button class="profile-button" onclick="location.href='#profile'">View My Profile</button>
-    </header>
-    <main class="main">
-        <div class="button-container">
-            <div class="button-card">
-                <h2>Creating Your Own Project</h2>
-                <p>Start a new project and find your team members.</p>
-                <button onclick="location.href='#create'">Create Now</button>
-            </div>
-            <div class="button-card">
-                <h2>Managing Your Project</h2>
-                <p>Keep track of your project's progress and members.</p>
-                <button onclick="location.href='#manage'">Manage Now</button>
-            </div>
-            <div class="button-card">
-                <h2>Search For a Project</h2>
-                <p>Find and join exciting projects that suit your interests.</p>
-                <button onclick="location.href='#search'">Search Now</button>
-            </div>
-        </div>
-    </main>
-</body>
-</html>
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f0f8ff;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header Style */
+.header {
+    text-align: center;
+    background-color: #FFD700;
+    padding: 20px 0;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.profile-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.profile-button:hover {
+    background-color: #0056b3;
+}
+
+/* Main Section */
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem;
+    background-color: #f4f4f4;
+    flex-wrap: wrap;
+}
+
+.content-wrapper {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    align-items: stretch; /* 子元素高度相同 */
+}
+
+/* Left Section: Takes 2/3 */
+.left-section {
+    flex: 0.67; /* 左側佔2/3寬度 */
+    padding: 2rem;
+    background-color: #FFF9E6; /* 淺黃色背景 */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 子元素置中 */
+    justify-content: space-between; /* 均分垂直空間 */
+}
+
+.main-title {
+    font-size: 2rem; /* 標題略小 */
+    font-weight: bold;
+    color: #333; /* 黑色字體 */
+    margin-bottom: 1.5rem;
+}
+
+.button-container-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* 卡片間距 */
+    flex-grow: 1; /* 撐滿剩餘空間 */
+    justify-content: space-evenly; /* 均分垂直空間 */
+    width: 100%;
+}
+
+.button-card {
+    width: 90%; /* 卡片寬度90% */
+    background-color: #fff; /* 白色背景 */
+    border: 2px solid #FFD700;
+    border-radius: 10px;
+    text-align: center;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.button-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.highlighted {
+    color: #007BFF; /* 藍色字體 */
+    font-weight: bold;
+    font-size: 1.8rem; /* 放大字體 */
+}
+
+.button-card p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+button {
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Right Section: Takes 1/3 */
+.right-section {
+    flex: 0.33;
+    background-color: #E9ECEF;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.small-title {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #555;
+}
+
+.events-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    align-items: center;
+}
+
+.event {
+    width: 90%; /* 每個事件寬度 */
+    text-align: center;
+    padding: 1rem;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.event-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #555;
+    text-decoration: none;
+}
+
+.event-title:hover {
+    text-decoration: underline;
+}
+
+.event-time {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    color: #666;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+}
