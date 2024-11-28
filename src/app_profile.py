@@ -9,10 +9,9 @@ from flask import Flask, render_template, request, Blueprint
 import bcrypt
 from database.connection import get_db
 
-
-
 app = Flask(__name__)
 
+profile_bp = Blueprint('profile', __name__)
 @app.route('/profile/<username>')
 def profile(username):
     # SQL command to get the user information
@@ -52,4 +51,4 @@ def profile(username):
     )
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
