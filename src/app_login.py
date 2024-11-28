@@ -8,6 +8,8 @@ import os
 from flask import Flask, render_template, request, Blueprint
 import bcrypt
 from database.connection import get_db
+from .api import fetch_events
+
 
 
 login_bp = Blueprint('login', __name__)
@@ -32,8 +34,10 @@ def login():
 
     hashed_password_db_bytes = hashed_password_db.encode()
 
+    events = fetch_events() 
+
     if bcrypt.checkpw(input_password.encode(), hashed_password_db_bytes):
-        return render_template("main.html")
+        return render_template("main.html", events=events)
     else:
         return render_template("index.html")
 
