@@ -18,6 +18,8 @@ data_analysis_db_url = s_config['source']['data_analysis_db_url']
 ui_conn = adbc_driver_postgresql.dbapi.connect(data_analysis_db_url)
 ui_cur = ui_conn.cursor()
 
+#ui_cur.execute(ui_config['query']['delete_user_info'])
+
 ui_cur.execute(ui_config['query']['create_user_info'])
 
 ui_conn.commit()
