@@ -1,4 +1,4 @@
-import polars
+import polars as pl
 import configparser
 import pandas
 import adbc_driver_postgresql.dbapi
@@ -31,37 +31,82 @@ def login():
     command = f"""
     SELECT username, password
     FROM user_info
-    WHERE username = {input_username}
+    WHERE username = '{input_username}'
     """
 
-    user_info = polars.read_database(command, connection= ui_conn)
+    user_info = pl.read_database(command, connection= ui_conn)
 
-    #salt = bcrypt.gensalt() #this creates a 60 character hash
-    #hash_pswd = bcrypt.hashpw(input_password.encode(), salt)
+    hashed_password_db = user_info[0,"password"]
 
-    hashed_password = user_info[0,"password"]
-    if bcrypt.checkpw(input_password.encode(), hashed_password):
+    hashed_password_db_bytes = hashed_password_db.encode()
+
+    if bcrypt.checkpw(input_password.encode(), hashed_password_db_bytes):
         return render_template("main.html")
     else:
         return render_template("index.html")
 
+@app.route("/register")
+def register():
+    return render_template("register_page.html")
 
 
-def login_test():
-    input_username = "danny"
-    input_password = "hello"
+@app.route("/registerSubmit", methods = ["POST"])
+def register_submit():
+    first_name = request.form.get("first-name")
+    second_name = request.form.get("last-name")
+    username = request.form.get("username")
+    input_password = request.form.get("password")
+    degree = request.form.get("degree")
+    course = request.form.get("course")
+    start = int(request.form.get("enrolling-year"))
+    github = request.form.get("github")
+    linkedin = request.form.get("linkedin")
+    email = request.form.get("email")
+    bio =request.form.get("bio")
 
-    command = f"""
-    SELECT username, password
-    FROM user_info
-    WHERE username = '{input_username}'
-    """
+    salt = bcrypt.gensalt() #this creates a 60 character hash
+    hashed_password = bcrypt.hashpw(input_password.encode(), salt)
 
-    user_info = polars.read_database(command, connection= ui_conn)
+    user_data_df = pl.DataFrame({
 
-    print(user_info)
+        "username": [username],
+        "password": [hashed_password],  # Store the hashed password
+        "first_name": [first_name],
+        "second_name": [second_name],
+        "course": [course],
+        "degree_type": [degree],
+        "enrolling_year": [start],
+        "email": [email],
+        "github": [github],
+        "linkedin": [linkedin],
+        "bio": [bio]
+    })
 
-    return
+    pl.Config.set_tbl_cols(50)
+    print(user_data_df)
+
+    try:
+
+        user_data_df.write_database(
+            table_name='user_info',
+            if_table_exists='append',
+            connection=ui_conn
+        )
+
+        return render_template("index.html")
+
+    except Exception as e:
+        return render_template("register.html", error = f"An error occurred: {e}")
+
+
+@app.route("/register")
+def register():
+    return render_template("register_page.html")
+
+@app.route("/project") #function that will inject data to database
+def register():
+    return render_template("register_page.html")
+
 
 if __name__ == "__main__":
-    login_test()
+    app.run(debug=True)
