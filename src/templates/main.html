@@ -37,32 +37,14 @@
 
             <!-- Right Section -->
             <section class="right-section">
-                <h2 class="small-title">Imperial College Events</h2>
+                <h2 class="small-title">Upcoming Workshops</h2>
                 <div class="events-container">
-                    <div class="event">
-                        <a href="#" class="event-title">Event 1 Title</a>
-                        <p class="event-time">January 1, 2025 - 10:00 AM</p>
-                    </div>
-                    <div class="event">
-                        <a href="#" class="event-title">Event 2 Title</a>
-                        <p class="event-time">January 15, 2025 - 3:00 PM</p>
-                    </div>
-                    <div class="event">
-                        <a href="#" class="event-title">Event 3 Title</a>
-                        <p class="event-time">February 5, 2025 - 1:00 PM</p>
-                    </div>
-                    <div class="event">
-                        <a href="#" class="event-title">Event 4 Title</a>
-                        <p class="event-time">March 12, 2025 - 2:00 PM</p>
-                    </div>
-                    <div class="event">
-                        <a href="#" class="event-title">Event 5 Title</a>
-                        <p class="event-time">April 20, 2025 - 4:00 PM</p>
-                    </div>
-                    <div class="event">
-                        <a href="#" class="event-title">Event 6 Title</a>
-                        <p class="event-time">April 20, 2025 - 4:00 PM</p>
-                    </div>
+                    {% for event in events %}
+                        <div class="event">
+                            <a href="{{ event.event_link }}" class="event-title">{{ event.title }}</a>
+                            <p class="event-time">{{ event.start_date }}</p>
+                        </div>
+                    {% endfor %}
                 </div>
             </section>
         </div>
