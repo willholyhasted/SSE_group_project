@@ -37,13 +37,13 @@
 
             <!-- Right Section -->
             <section class="right-section">
-                <h2 class="small-title">Upcoming Workshops</h2>
+                <h2 class="small-title">Imperial College Events</h2>
                 <div class="events-container">
                     {% for event in events %}
-                        <div class="event">
-                            <a href="{{ event.event_link }}" class="event-title">{{ event.title }}</a>
-                            <p class="event-time">{{ event.start_date }}</p>
-                        </div>
+                    <div class="event">
+                        <a href="{{ event.link }}" class="event-title" target="_blank">{{ event.title }}</a>
+                        <p class="event-time">{{ event.time_range }}</p>
+                    </div>
                     {% endfor %}
                 </div>
             </section>
