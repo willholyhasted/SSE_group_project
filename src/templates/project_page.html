@@ -115,6 +115,32 @@
         footer a:hover {
             text-decoration: underline;
         }
+
+        /* Flex container for checkbox layout */
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: space-between; /* Evenly space items across the row */
+        }
+
+        .checkbox-group label {
+            width: 30%; /* Adjusts the width of each checkbox to fit 3 per row */
+            font-size: 12px; /* Smaller font size for options */
+            display: flex;
+            align-items: center; /* Vertically align checkboxes and labels */
+        }
+
+        .checkbox-group input {
+            margin-right: 5px; /* Space between checkbox and label */
+        }
+
+        /* Styling for small error message */
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -123,7 +149,7 @@
 
     <div class="container">
         <h2>Create a New Project</h2>
-        <form>
+        <form action="/project" method="POST" id="project-form">
             <div class="form-group">
                 <label for="project-name">Project Name</label>
                 <input type="text" id="project-name" name="project-name" placeholder="Enter your project name" required>
@@ -133,23 +159,51 @@
                 <textarea id="description" name="description" placeholder="Briefly describe your project" rows="4" required></textarea>
             </div>
             <div class="form-group">
-                <label for="bio">Bio</label>
-                <textarea id="bio" name="bio" placeholder="Tell us about yourself (e.g., background, expertise, motivations)" rows="4" required></textarea>
-            </div>
-            <div class="form-group">
                 <label for="people">Number of People</label>
                 <input type="number" id="people" name="people" placeholder="Enter the number of participants" min="1" required>
             </div>
             <div class="form-group">
                 <label for="field">Field</label>
-                <select id="field" name="field" required>
-                    <option value="">Select your field</option>
-                    <option value="Computer Science">Computer Science</option>
-                    <option value="Engineering">Engineering</option>
-                    <option value="Arts">Arts</option>
-                    <option value="Business">Business</option>
-                    <option value="Science">Science</option>
-                </select>
+                <div class="checkbox-group" id="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="field" value="Computer Science"> Computer Science
+                    </label>
+                    <label>
+                        <input type="checkbox" name="field" value="Engineering"> Engineering
+                    </label>
+                    <label>
+                        <input type="checkbox" name="field" value="Arts"> Arts
+                    </label>
+                    <label>
+                        <input type="checkbox" name="field" value="Business"> Business
+                    </label>
+                    <label>
+                        <input type="checkbox" name="field" value="Science"> Science
+                    </label>
+                    <label>
+                        <input type="checkbox" name="field" value="Math"> Mathematics
+                    </label>
+                    <label>
+                        <input type="checkbox" name="field" value="Math"> Medicine
+                    </label>
+                    <label>
+                        <input type="checkbox" name="field" value="Math"> Economics
+                    </label>
+                    <label>
+                        <input type="checkbox" name="field" value="Math"> Law
+                    </label>
+                    <label>
+                        <input type="checkbox" name="field" value="Math"> Linguistics
+                    </label>
+                    <label>
+                        <input type="checkbox" name="field" value="Math"> Geography
+                    </label>
+                    <label>
+                        <input type="checkbox" name="field" value="Math"> Education
+                    </label>
+                    <small>Select up to 3 options</small>
+                </div>
+                <div class="error-message" id="error-message" style="display:none;">You can select a maximum of 3 options.</div>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
@@ -164,6 +218,24 @@
         </footer>
     </div>
 
+    <script>
+        // JavaScript to limit the number of checkboxes that can be selected
+        const checkboxGroup = document.getElementById('checkbox-group');
+        const errorMessage = document.getElementById('error-message');
+        const checkboxes = checkboxGroup.querySelectorAll('input[type="checkbox"]');
+
+        checkboxGroup.addEventListener('change', function () {
+            const selectedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
+
+            if (selectedCount > 3) {
+                errorMessage.style.display = 'block';
+                const uncheckedCheckbox = Array.from(checkboxes).find(checkbox => !checkbox.checked);
+                uncheckedCheckbox.checked = false; // Uncheck the last selected option
+            } else {
+                errorMessage.style.display = 'none';
+            }
+        });
+    </script>
+
 </body>
 </html>
-
