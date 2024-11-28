@@ -22,6 +22,10 @@ ui_cur = ui_conn.cursor()
 
 ui_cur.execute(ui_config['query']['create_user_info'])
 
+#ui_cur.execute(ui_config['query']['delete_project_info'])
+
+ui_cur.execute(ui_config['query']['create_project_info'])
+
 ui_conn.commit()
 ui_cur.close()
 ui_conn.close()
