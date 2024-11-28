@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Manage my project</title>
+   <style>
+       /* General Styles */
+       body {
+           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+           margin: 0;
+           padding: 0;
+           box-sizing: border-box;
+           background-color: #f0f8ff; /* Light blue background */
+           color: #333; /* Default text color */
+           line-height: 1.6; /* Improve text readability */
+       }
+
+
+       /* Header Style */
+       .header {
+           text-align: center;
+           background-color: #FFD700; /* Gold background */
+           padding: 40px 0; /* Increased padding for a bigger banner */
+           font-size: 40px; /* Larger font size for the title */
+           font-weight: bold;
+           color: #000; /* Black color for the text */
+           letter-spacing: 1px;
+       }
+
+
+       /* Main Section */
+       .main {
+           padding: 2rem;
+           display: flex;
+           justify-content: center;
+           background-color: #f4f4f4; /* Light gray background */
+       }
+
+
+       /* Project Details Container */
+       .project-details {
+           background-color: #fff; /* White background */
+           border: 2px solid #FFD700; /* Gold border */
+           border-radius: 10px; /* Rounded corners */
+           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+           padding: 2rem;
+           max-width: 800px;
+           width: 100%;
+       }
+
+
+       .project-details h2 {
+           font-size: 2rem;
+           color: #007BFF; /* Blue color for project title */
+           margin-bottom: 1rem;
+       }
+
+
+       .project-details p {
+           margin: 0.5rem 0;
+           color: #555; /* Medium gray for text */
+       }
+
+
+       .project-details .description {
+           font-style: italic;
+           color: #666; /* Lighter gray for description */
+       }
+
+
+       .project-details a {
+           color: #007BFF; /* Blue link for email */
+           text-decoration: none; /* Remove underline */
+       }
+
+
+       .project-details a:hover {
+           text-decoration: underline; /* Add underline on hover */
+       }
+
+
+       /* Table Styles */
+       table {
+           width: 100%;
+           border-collapse: collapse;
+           margin-top: 20px;
+       }
+
+
+       table, th, td {
+           border: 1px solid #ccc;
+       }
+
+
+       th, td {
+           padding: 12px;
+           text-align: left;
+       }
+
+
+       th {
+           background-color: #f4f4f4;
+       }
+
+
+       /* Action Button Styles */
+       .action-btn {
+           padding: 10px 20px;
+           font-size: 16px;
+           cursor: pointer;
+           background-color: #4CAF50;
+           color: white;
+           border: none;
+           border-radius: 5px;
+           margin: 5px;
+       }
+
+
+       .action-btn.decline {
+           background-color: #f44336;
+       }
+
+
+       .action-btn:hover {
+           opacity: 0.8;
+       }
+   </style>
+</head>
+<body>
+   <!-- Header Section -->
+   <div class="header">
+       Manage my project
+   </div>
+
+
+   <!-- Main Content Section -->
+   <div class="main">
+       <div class="project-details">
+           <!-- Project Name Section -->
+           <h2>Project Name: Example Project</h2>
+
+
+           <!-- Applicants Section -->
+           <h3>Applicants</h3>
+
+
+           <!-- Applicant Details Table -->
+           <table>
+               <thead>
+                   <tr>
+                       <th>Name</th>
+                       <th>Course</th>
+                       <th>Enroll Year</th>
+                       <th>Emails</th>
+                       <th>Action</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   <tr>
+                       <td>John Doe</td>
+                       <td>Computer Science</td>
+                       <td>2022</td>
+                       <td><a href="mailto:john.doe@example.com">john.doe@example.com</a></td>
+                       <td>
+                           <button class="action-btn">Accept</button>
+                           <button class="action-btn decline">Decline</button>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td>Jane Smith</td>
+                       <td>Software Engineering</td>
+                       <td>2023</td>
+                       <td><a href="mailto:jane.smith@example.com">jane.smith@example.com</a></td>
+                       <td>
+                           <button class="action-btn">Accept</button>
+                           <button class="action-btn decline">Decline</button>
+                       </td>
+                   </tr>
+                   <!-- Additional applicants can be added here -->
+               </tbody>
+           </table>
+       </div>
+   </div>
+</body>
+</html>
+
+
