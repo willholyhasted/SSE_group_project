@@ -12,6 +12,7 @@ from database.connection import get_db
 
 
 app = Flask(__name__)
+profile_bp = Blueprint('profile', __name__)
 
 @app.route('/profile/<username>')
 def profile(username):
