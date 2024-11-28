@@ -21,6 +21,7 @@ app.register_blueprint(manage_bp)
 app.register_blueprint(profile_bp)
 app.register_blueprint(search_bp)
 
+app.secret_key = "your_secret_key"  # Required for session handling
 
 @app.teardown_appcontext
 def cleanup(expection=None):

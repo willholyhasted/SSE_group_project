@@ -5,7 +5,7 @@ import adbc_driver_postgresql.dbapi
 from string import Template
 from pathlib import Path
 import os
-from flask import Flask, render_template, request, Blueprint
+from flask import Flask, render_template, request, Blueprint, session
 import bcrypt
 from database.connection import get_db
 
@@ -18,6 +18,8 @@ login_bp = Blueprint('login', __name__)
 def login():
     input_username = request.form.get("username")
     input_password = request.form.get("password")
+
+    session['username'] = input_username  # Store the username in the session
 
     command = f"""
     SELECT username, password
