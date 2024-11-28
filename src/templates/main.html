@@ -9,25 +9,25 @@
 <body>
     <header class="header">
         <h1>Let's Match the Project Group!</h1>
-        <button class="profile-button" onclick="location.href='#profile'">View My Profile</button>
+        <button class="profile-button" onclick="location.href='profile.html'">View My Profile</button>
     </header>
     <main class="main">
         <div class="button-container">
-            <div class="button-card">
+            <form class="button-card" action="/create" method="POST">
                 <h2>Creating Your Own Project</h2>
                 <p>Start a new project and find your team members.</p>
                 <button onclick="location.href='#create'">Create Now</button>
-            </div>
-            <div class="button-card">
+            </form>
+            <form class="button-card" action="/manage" method="POST">
                 <h2>Managing Your Project</h2>
                 <p>Keep track of your project's progress and members.</p>
                 <button onclick="location.href='#manage'">Manage Now</button>
-            </div>
-            <div class="button-card">
+            </form>
+            <form class="button-card" action="/search" method="POST">
                 <h2>Search For a Project</h2>
                 <p>Find and join exciting projects that suit your interests.</p>
                 <button onclick="location.href='#search'">Search Now</button>
-            </div>
+            </form>
         </div>
     </main>
 </body>
