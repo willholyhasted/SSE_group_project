@@ -183,16 +183,8 @@
                        <td>
                            <div id="action-{{ applicant.first_name | lower}}">
                                 {% if applicant.status is none %}
-                                <form action="/update_status" method="POST">
-                                    <input type="hidden" name="applicant_username" value="{{applicant.applicant}}">
-                                    <input type="hidden" name="status" value="true">
-                                    <button type="submit" class="action-btn">Accept</button>
-                                </form>
-                                <form action="/update_status" method="POST">
-                                    <input type="hidden" name="applicant_username" value="{{applicant.applicant}}">
-                                    <input type="hidden" name="status" value="false">
-                                    <button type="submit" class="action-btn decline">Decline</button>
-                                </form>
+                                <button class="action-btn" onclick="acceptApplicant('{{applicant.first_name | lower}}')">Accept</button>
+                                <button class="action-btn decline" onclick="declineApplicant('{{applicant.first_name | lower}}')">Decline</button>
                                 {% elif applicant.status %}
                                 <span class="status accepted">Accepted</span>
                                 {% else %}
@@ -206,5 +198,16 @@
        </div>
    </div>
 
+   <script>
+    function acceptApplicant(id) {
+        const actionBlock = document.getElementById(`action-${id}`);
+        actionBlock.innerHTML = '<span class="status accepted">Accepted</span>';
+    }
+
+    function declineApplicant(id) {
+        const actionBlock = document.getElementById(`action-${id}`);
+        actionBlock.innerHTML = '<span class="status declined">Declined</span>';
+    }
+</script>
 </body>
 </html>

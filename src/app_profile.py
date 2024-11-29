@@ -56,12 +56,3 @@ def create_view(username):
 
     return render_template("profileTest.html", first_name=first_name, second_name=second_name, course=course, enrolling_year=enrolling_year, email=email, github_url=github_url,linkedin_url=linkedin_url, bio=bio)
 
-
-
-
-
-
-
-
-
-
