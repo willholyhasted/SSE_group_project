@@ -12,7 +12,61 @@ from database.connection import get_db
 app = Flask(__name__)
 profile_bp = Blueprint('profile', __name__)
 
-profile_bp = Blueprint('profile', __name__)
+
+@profile_bp.route("/view", methods = ["POST"])
+def create_view():
+    # SQL command to get the user information
+
+    session['username'] = input_username  # Store the username in the session
+
+    command = f"""
+    SELECT Name, Course, Enrolling_Year, Email, GitHub_URL, LinkedIn_URL
+    FROM user_info
+    WHERE username = '{username}'
+    """
+
+    # Connect to the database
+    ui_conn = get_db()
+
+    # Execute SQL command and fetch data
+    user_info = pl.read_database(command, connection=ui_conn)
+
+    # Check if user exists in the database
+    if len(user_info) == 0:
+        return "User not found", 404
+    
+    # Extract user data from the DataFrame
+    name = user_info[0, "Name"]
+    course = user_info[0, "Course"]
+    enrolling_year = user_info[0, "Enrolling_Year"]
+    email = user_info[0, "Email"]
+    github_url = user_info[0, "GitHub_URL"]
+    linkedin_url = user_info[0, "LinkedIn_URL"]
+    
+
+    return render_template("profileTest.html")
+
+
+        "username": [username],
+        "password": [hashed_password],  # Store the hashed password
+        "first_name": [first_name],
+        "second_name": [second_name],
+        "course": [course],
+        "degree_type": [degree],
+        "enrolling_year": [start],
+        "email": [email],
+        "github": [github],
+        "linkedin": [linkedin],
+        "bio": [bio]
+
+
+
+
+
+
+
+
+
 @app.route('/profile/<username>')
 def profile(username):
     # SQL command to get the user information

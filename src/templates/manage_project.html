@@ -16,7 +16,6 @@
            line-height: 1.6; /* Improve text readability */
        }
 
-
        /* Header Style */
        .header {
            text-align: center;
@@ -28,7 +27,6 @@
            letter-spacing: 1px;
        }
 
-
        /* Main Section */
        .main {
            padding: 2rem;
@@ -37,7 +35,6 @@
            background-color: #f4f4f4; /* Light gray background */
        }
 
-
        /* Project Details Container */
        .project-details {
            background-color: #fff; /* White background */
@@ -45,10 +42,9 @@
            border-radius: 10px; /* Rounded corners */
            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
            padding: 2rem;
-           max-width: 800px;
+           max-width: 1200px; /* Increased max width for a wider table */
            width: 100%;
        }
-
 
        .project-details h2 {
            font-size: 2rem;
@@ -56,53 +52,30 @@
            margin-bottom: 1rem;
        }
 
-
-       .project-details p {
-           margin: 0.5rem 0;
-           color: #555; /* Medium gray for text */
-       }
-
-
-       .project-details .description {
-           font-style: italic;
-           color: #666; /* Lighter gray for description */
-       }
-
-
-       .project-details a {
-           color: #007BFF; /* Blue link for email */
-           text-decoration: none; /* Remove underline */
-       }
-
-
-       .project-details a:hover {
-           text-decoration: underline; /* Add underline on hover */
-       }
-
-
        /* Table Styles */
        table {
-           width: 100%;
+           width: 100%; /* Make the table span the full container width */
            border-collapse: collapse;
            margin-top: 20px;
        }
 
-
        table, th, td {
            border: 1px solid #ccc;
        }
-
 
        th, td {
            padding: 12px;
            text-align: left;
        }
 
-
        th {
            background-color: #f4f4f4;
        }
 
+       /* Bold applicant names */
+       .applicant-name {
+           font-weight: bold;
+       }
 
        /* Action Button Styles */
        .action-btn {
@@ -116,14 +89,51 @@
            margin: 5px;
        }
 
-
        .action-btn.decline {
            background-color: #f44336;
        }
 
-
        .action-btn:hover {
            opacity: 0.8;
+       }
+
+       /* Status Styles */
+       .status {
+           font-weight: bold;
+           font-size: 16px;
+           padding: 10px 20px;
+           border-radius: 5px;
+           display: inline-block;
+           margin: 5px 0;
+       }
+
+       .status.accepted {
+           background-color: #4CAF50;
+           color: white;
+       }
+
+       .status.declined {
+           background-color: #f44336;
+           color: white;
+       }
+
+       /* View Profile Button */
+       .view-profile-btn {
+           display: inline-block;
+           padding: 6px 12px;
+           font-size: 14px;
+           font-weight: bold;
+           color: #fff; /* White text */
+           background-color: #0d2d41;
+           border: 1px solid #007BFF;
+           border-radius: 4px;
+           text-align: center;
+           text-decoration: none;
+           cursor: pointer;
+       }
+
+       .view-profile-btn:hover {
+           background-color: #5AA0D3;
        }
    </style>
 </head>
@@ -133,17 +143,14 @@
        Manage my project
    </div>
 
-
    <!-- Main Content Section -->
    <div class="main">
        <div class="project-details">
            <!-- Project Name Section -->
            <h2>Project Name: Example Project</h2>
 
-
            <!-- Applicants Section -->
            <h3>Applicants</h3>
-
 
            <!-- Applicant Details Table -->
            <table>
@@ -157,32 +164,37 @@
                    </tr>
                </thead>
                <tbody>
+                    {% for applicant in applicants}
                    <tr>
-                       <td>John Doe</td>
-                       <td>Computer Science</td>
-                       <td>2022</td>
-                       <td><a href="mailto:john.doe@example.com">john.doe@example.com</a></td>
                        <td>
-                           <button class="action-btn">Accept</button>
-                           <button class="action-btn decline">Decline</button>
+                           <span class="applicant-name">{{ first_name }} {{ last_name }}</span><br>
+                           <a href="#" class="view-profile-btn">View Profile</a>
                        </td>
-                   </tr>
-                   <tr>
-                       <td>Jane Smith</td>
-                       <td>Software Engineering</td>
-                       <td>2023</td>
-                       <td><a href="mailto:jane.smith@example.com">jane.smith@example.com</a></td>
+                       <td>{{ course }}</td>
+                       <td>{{ enrolling_year }}</td>
+                       <td>{{ email }}</td>
                        <td>
-                           <button class="action-btn">Accept</button>
-                           <button class="action-btn decline">Decline</button>
-                       </td>
+                           <div id="action-john">
+                               <button class="action-btn" onclick="acceptApplicant('john')">Accept</button>
+                               <button class="action-btn decline" onclick="declineApplicant('john')">Decline</button>
+                           </div>
                    </tr>
-                   <!-- Additional applicants can be added here -->
+                    {% endfor %}
                </tbody>
            </table>
        </div>
    </div>
+
+   <script>
+       function acceptApplicant(id) {
+           const actionBlock = document.getElementById(`action-${id}`);
+           actionBlock.innerHTML = '<span class="status accepted">Accepted</span>';
+       }
+
+       function declineApplicant(id) {
+           const actionBlock = document.getElementById(`action-${id}`);
+           actionBlock.innerHTML = '<span class="status declined">Declined</span>';
+       }
+   </script>
 </body>
 </html>
-
-
