@@ -10,7 +10,7 @@ import bcrypt
 from .app_login import login_bp
 from .app_create_project import create_bp
 from .app_manage_project import manage_bp
-from .app_profile import profile_bp
+# from .app_profile import profile_bp
 from .app_search_project import search_bp
 
 from database.connection import close_db
@@ -19,7 +19,7 @@ app = Flask(__name__)
 app.register_blueprint(login_bp)
 app.register_blueprint(create_bp)
 app.register_blueprint(manage_bp)
-app.register_blueprint(profile_bp)
+# app.register_blueprint(profile_bp)
 app.register_blueprint(search_bp)
 
 app.secret_key = "your_secret_key"  # Required for session handling
