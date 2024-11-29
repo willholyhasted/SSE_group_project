@@ -11,3 +11,8 @@ from database.connection import get_db
 
 
 manage_bp = Blueprint('manage', __name__)
+
+@manage_bp.route("/manage", methods = ["POST"])
+def manage_project():
+    return render_template("manage_project.html")
+
