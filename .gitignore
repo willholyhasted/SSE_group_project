@@ -8,3 +8,5 @@ myenv/
 __pycache__/
 
 secret.ini
+
+flask_session/

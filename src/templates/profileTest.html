@@ -16,7 +16,7 @@
     <div class="profile-container">
         <!-- Left Section -->
         <div class="profile-left">
-            <p><strong>Name:</strong> {{ first_name }} {{ last_name }}</p>
+            <p><strong>Name:</strong> {{ first_name }} {{ second_name }}</p>
             <p><strong>Course:</strong> {{ course }}</p>
             <p><strong>Enrolling Year:</strong> {{ enrolling_year }}</p>
             <p><strong>Email:</strong> {{ email }}</p>
@@ -27,12 +27,7 @@
         <!-- Right Section -->
         <div class="profile-right">
             <h2>Bio</h2>
-            <p>
-                Tyler is a highly motivated student pursuing a degree in Computer Science.
-                His passion lies in creating innovative software solutions and contributing
-                to open-source projects. When not coding, Tyler enjoys hiking, photography,
-                and exploring the world of artificial intelligence.
-            </p>
+            <p>{{ bio }}</p>
         </div>
     </div>
 </body>

@@ -14,6 +14,7 @@ from .app_profile import profile_bp
 from .app_search_project import search_bp
 
 from database.connection import close_db
+from flask_session import Session
 app = Flask(__name__)
 app.register_blueprint(login_bp)
 app.register_blueprint(create_bp)
@@ -22,6 +23,10 @@ app.register_blueprint(profile_bp)
 app.register_blueprint(search_bp)
 
 app.secret_key = "your_secret_key"  # Required for session handling
+
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 @app.teardown_appcontext
 def cleanup(expection=None):
