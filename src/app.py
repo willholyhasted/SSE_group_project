@@ -5,28 +5,23 @@ import adbc_driver_postgresql.dbapi
 from string import Template
 from pathlib import Path
 import os
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 import bcrypt
 from .app_login import login_bp
 from .app_create_project import create_bp
 from .app_manage_project import manage_bp
-# from .app_profile import profile_bp
+from .app_profile import profile_bp
 from .app_search_project import search_bp
-
 from database.connection import close_db
-from flask_session import Session
+
 app = Flask(__name__)
 app.register_blueprint(login_bp)
 app.register_blueprint(create_bp)
 app.register_blueprint(manage_bp)
-# app.register_blueprint(profile_bp)
+app.register_blueprint(profile_bp)
 app.register_blueprint(search_bp)
 
 app.secret_key = "your_secret_key"  # Required for session handling
-
-app.config["SESSION_PERMANENT"] = False
-app.config["SESSION_TYPE"] = "filesystem"
-Session(app)
 
 @app.teardown_appcontext
 def cleanup(expection=None):
