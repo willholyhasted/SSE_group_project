@@ -8,21 +8,28 @@ import os
 from flask import Flask, render_template, request, Blueprint
 import bcrypt
 from database.connection import get_db
+from flask import session
 
-app = Flask(__name__)
+
 profile_bp = Blueprint('profile', __name__)
 
 
-@profile_bp.route("/view", methods = ["POST"])
-def create_view():
-    # SQL command to get the user information
 
-    session['username'] = input_username  # Store the username in the session
+
+
+@profile_bp.route('/profile/', defaults={'username': None}, methods = ["POST"])
+@profile_bp.route("/profile/<string:username>", methods = ["POST"])
+def create_view(username):
+    # SQL command to get the user information
+    if username is None:
+        input_username = session.get('username')  # Store the username in the session
+    else:
+        input_username = username
 
     command = f"""
-    SELECT Name, Course, Enrolling_Year, Email, GitHub_URL, LinkedIn_URL
+    SELECT first_name, second_name, course, enrolling_year, email, github, linkedin, bio
     FROM user_info
-    WHERE username = '{username}'
+    WHERE username = '{input_username}'
     """
 
     # Connect to the database
@@ -34,30 +41,20 @@ def create_view():
     # Check if user exists in the database
     if len(user_info) == 0:
         return "User not found", 404
+
     
     # Extract user data from the DataFrame
-    name = user_info[0, "Name"]
-    course = user_info[0, "Course"]
-    enrolling_year = user_info[0, "Enrolling_Year"]
-    email = user_info[0, "Email"]
-    github_url = user_info[0, "GitHub_URL"]
-    linkedin_url = user_info[0, "LinkedIn_URL"]
+    first_name = user_info["first_name"][0]
+    second_name = user_info["second_name"][0]
+    course = user_info["course"][0]
+    enrolling_year = user_info["enrolling_year"][0]
+    email = user_info["email"][0]
+    github_url = user_info["github"][0]
+    linkedin_url = user_info["linkedin"][0]
+    bio = user_info["bio"][0]
     
 
-    return render_template("profileTest.html")
-
-
-        "username": [username],
-        "password": [hashed_password],  # Store the hashed password
-        "first_name": [first_name],
-        "second_name": [second_name],
-        "course": [course],
-        "degree_type": [degree],
-        "enrolling_year": [start],
-        "email": [email],
-        "github": [github],
-        "linkedin": [linkedin],
-        "bio": [bio]
+    return render_template("profileTest.html", first_name=first_name, second_name=second_name, course=course, enrolling_year=enrolling_year, email=email, github_url=github_url,linkedin_url=linkedin_url, bio=bio)
 
 
 
@@ -67,43 +64,4 @@ def create_view():
 
 
 
-@app.route('/profile/<username>')
-def profile(username):
-    # SQL command to get the user information
-    command = f"""
-    SELECT Name, Course, Enrolling_Year, Email, GitHub_URL, LinkedIn_URL
-    FROM user_info
-    WHERE username = '{username}'
-    """
-    
-    # Connect to the database
-    ui_conn = get_db()
-    
-    # Execute SQL command and fetch data
-    user_info = pl.read_database(command, connection=ui_conn)
-    
-    # Check if user exists in the database
-    if len(user_info) == 0:
-        return "User not found", 404
-    
-    # Extract user data from the DataFrame
-    name = user_info[0, "Name"]
-    course = user_info[0, "Course"]
-    enrolling_year = user_info[0, "Enrolling_Year"]
-    email = user_info[0, "Email"]
-    github_url = user_info[0, "GitHub_URL"]
-    linkedin_url = user_info[0, "LinkedIn_URL"]
-    
-    # Render the HTML page using data from the database
-    return render_template(
-        'profile.html',
-        name=name,
-        course=course,
-        enrolling_year=enrolling_year,
-        email=email,
-        github_url=github_url,
-        linkedin_url=linkedin_url
-    )
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5001)
