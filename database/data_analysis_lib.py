@@ -26,7 +26,7 @@ ui_cur.execute(ui_config['query']['create_user_info'])
 
 ui_cur.execute(ui_config['query']['create_project_info'])
 
-#ui_cur.execute(ui_config['query']['delete_applications_info'])
+ui_cur.execute(ui_config['query']['delete_applications_info'])
 
 ui_cur.execute(ui_config['query']['create_applications_info'])
 
