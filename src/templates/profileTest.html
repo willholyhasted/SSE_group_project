@@ -9,14 +9,13 @@
 <body>
     <!-- Header Block -->
     <div class="header">
-        <h1>My Profile</h1>
+        <h1>{{ first_name }} {{ second_name }}</h1>
     </div>
 
     <!-- Main Profile Container -->
     <div class="profile-container">
         <!-- Left Section -->
         <div class="profile-left">
-            <p><strong>Name:</strong> {{ first_name }} {{ second_name }}</p>
             <p><strong>Course:</strong> {{ course }}</p>
             <p><strong>Enrolling Year:</strong> {{ enrolling_year }}</p>
             <p><strong>Email:</strong> {{ email }}</p>
