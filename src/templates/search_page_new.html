@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search & Apply Projects</title>
+    <link rel="stylesheet" href="../static/styles_search.css">
+    <style>
+        .filter-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .projects-container .project-row {
+            display: none; /* Hide all rows by default */
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Search & Apply for Projects</h1>
+    </header>
+    <main class="main">
+        <!-- Filter Dropdown -->
+        <div class="filter-container">
+            <label for="field-filter">Filter by Field:</label>
+            <select id="field-filter" onchange="filterProjects()">
+                <option value="all">All Fields</option>
+                <option value="Arts">Arts</option>
+                <option value="Business">Business</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Economics">Economics</option>
+                <option value="Education">Education</option>
+                <option value="Engineering">Engineering</option>
+                <option value="Geography">Geography</option>
+                <option value="Law">Law</option>
+                <option value="Linguistics">Linguistics</option>
+                <option value="Mathematics">Mathematics</option>
+                <option value="Medicine">Medicine</option>
+                <option value="Psychology">Psychology</option>
+            </select>
+        </div>
+        <!-- Projects Container -->
+        <div class="projects-container">
+            {% for project in projects %}
+            <a href="{{ project.details_link }}" class="project-row" data-field="{{ project.fields }}">
+                <div class="project-info">
+                    <h2>{{ project.project_name }}</h2>
+                    <p><strong>Fields:</strong>
+                        {{ project.fields  }}</p>
+                    <p class="description">{{ project.description }}</p>
+                </div>
+                {% if project.status is none and project.applicant is none %}
+                <form action="/apply_project" method="POST">
+                    <input type="hidden" name="project_id" value="{{ project.project_id }}">
+                    <button type = "submit" class = "apply-button">Apply Now</button>
+                </form>
+                {% elif project.status is none %}
+                <span class="applied-status">Applied!</span>
+                {% elif project.status %}
+                <span class="accepted-status">Accepted</span>
+                {% else %}
+                <span class="rejected-status">Rejected</span>
+                {% endif %}
+            </a>
+            {% endfor %}
+        </div>
+
+    </main>
+    <script>
+        function filterProjects() {
+            const filterValue = document.getElementById('field-filter').value;
+            const projectRows = document.querySelectorAll('.project-row');
+
+            projectRows.forEach(row => {
+                const field = row.getAttribute('data-field');
+                if (filterValue === 'all' || field.includes(filterValue)) {
+                    row.style.display = 'block'; // Show the row
+                } else {
+                    row.style.display = 'none'; // Hide the row
+                }
+            });
+        }
+
+        // Initialize filter to show all projects on page load
+        window.onload = filterProjects;
+    </script>
+</body>
+</html>

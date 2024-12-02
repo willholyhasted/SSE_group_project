@@ -93,3 +93,36 @@ body {
 .apply-button:hover {
     background-color: #0056b3; /* Darker blue on hover */
 }
+
+.applied-status {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    background-color: #808080; /* Blue button background */
+    color: white; /* White text */
+    border: none;
+    border-radius: 5px; /* Rounded button corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.accepted-status {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    background-color: #4CAF50; /* Blue button background */
+    color: white; /* White text */
+    border: none;
+    border-radius: 5px; /* Rounded button corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.rejected-status {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    background-color: #f44336; /* Blue button background */
+    color: white; /* White text */
+    border: none;
+    border-radius: 5px; /* Rounded button corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
