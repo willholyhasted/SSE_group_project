@@ -9,6 +9,8 @@ from flask import Flask, render_template, request, Blueprint
 import bcrypt
 from database.connection import get_db
 from flask import session
+import requests
+import base64
 
 
 profile_bp = Blueprint('profile', __name__)
@@ -54,5 +56,38 @@ def create_view(username):
     bio = user_info["bio"][0]
     
 
-    return render_template("profileTest.html", first_name=first_name, second_name=second_name, course=course, enrolling_year=enrolling_year, email=email, github_url=github_url,linkedin_url=linkedin_url, bio=bio)
+    # Get the api
+    input_name = github_url.split('/')[3]
+    response = requests.get(f"https://api.github.com/users/{input_name}/repos")
+    REPOS = []
+    if response.status_code == 200:
+        repos = response.json()
+    else:
+        repos = []
+        print(f"Error: {response.status_code}")
+    for repo in repos:
+        full_name = repo['full_name']
+        repo_name = full_name.split('/')[1]
+        time = repo['updated_at']
+        response_repo = requests.get(
+            f"https://api.github.com/repos/{full_name}")
+        star = response_repo.json()['stargazers_count']
+        response_language = requests.get(
+            f"https://api.github.com/repos/{full_name}/languages")
+        languages = response_language.json()
+        languages_names = list(languages.keys())
+        response_readme = requests.get(
+             f"https://api.github.com/repos/{full_name}/readme")
+        readme = response_readme.json().get("content", "")
+        readmetext = base64.b64decode(readme).decode('utf-8')
+        
+        REPOS.append(
+            {'repo': repo_name,
+             'time': time,
+             'star': star,
+             'languages': languages_names,
+             'readme': readmetext})
+
+    return render_template("profileTest.html", first_name=first_name, second_name=second_name, course=course, 
+                           enrolling_year=enrolling_year, email=email, github_url=github_url,linkedin_url=linkedin_url, bio=bio, repos=REPOS)
 
