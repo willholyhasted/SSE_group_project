@@ -129,6 +129,14 @@ button:hover {
     background-color: #0056b3;
 }
 
+button:disabled {
+    background-color: #a9a9a9; /* Dark gray */
+    color: #fff; /* White text */
+    border: none; /* Remove border or customize */
+    cursor: not-allowed; /* Show a 'not allowed' cursor */
+    opacity: 0.6; /* Slightly transparent look */
+}
+
 /* Right Section: Takes 1/3 */
 .right-section {
     flex: 0.33;

@@ -54,7 +54,15 @@ def submit_project():
         "email": [email]
     })
 
-
+    existing_project_query = f"""
+    SELECT COUNT(*) AS count
+    FROM project_info
+    WHERE project_name = '{project_name}'
+    """
+    ui_conn = get_db()
+    existing_project = pl.read_database(existing_project_query, connection= ui_conn)
+    if existing_project[0, "count"] > 0:
+        return render_template("project_page.html", error="Project name already exists.")
 
     #pl.Config.set_tbl_cols(50) #for debugging
     #print(project_data_df)     #for debugging
