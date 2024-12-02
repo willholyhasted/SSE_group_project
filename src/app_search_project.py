@@ -63,8 +63,6 @@ def apply_project():
     username = session.get('username')
     project_id = request.form['project_id']
 
-    print("***" + project_id + "***")
-
     command = f"""
             INSERT INTO applications_info
             (project_id, applicant, status, application_time)
@@ -81,3 +79,45 @@ def apply_project():
     #we want to write to database adding an application
     #then the button should turn grey if already applied
     return redirect(url_for('search.search_project'))
+
+@search_bp.route("/project_details", methods = ["POST", "GET"])
+def project_details():
+    project_id = request.args.get('project_id')
+
+    #now get data from the database including project id
+
+    command = f"""
+                    SELECT project_id, project_info.username, first_name, second_name, project_name, description, people, field1, field2, field3, project_info.email
+                    FROM project_info LEFT JOIN user_info 
+                    ON project_info.username = user_info.username
+                    WHERE project_id = '{project_id}'
+               """
+
+    ui_conn = get_db()
+    projects_df = pl.read_database(command, connection=ui_conn)
+
+    pl.Config.set_tbl_cols(50)
+
+    print(projects_df)
+
+    projects_df = projects_df.with_columns(
+        pl.concat_str(["field1", "field2", "field3"], separator=", ").alias("fields")
+    )
+
+    projects_df = projects_df.with_columns(
+        pl.col("fields").str.strip_chars(', ').alias("fields")  # Remove trailing comma and space
+    )
+
+    projects_df = projects_df.with_columns(
+        pl.col("fields").str.strip_chars(', ').alias("fields")  # Remove trailing comma and space
+    )
+
+    print(projects_df)
+
+    projects_dict = projects_df.to_dicts()
+
+    print(projects_dict)
+
+    return render_template("project_infopage.html", projects=projects_dict)
+
+

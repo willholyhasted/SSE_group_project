@@ -42,7 +42,7 @@
         <!-- Projects Container -->
         <div class="projects-container">
             {% for project in projects %}
-            <a href="{{ project.details_link }}" class="project-row" data-field="{{ project.fields }}">
+            <a href="/project_details?project_id={{project.project_id}}" class="project-row" data-field="{{ project.fields }}">
                 <div class="project-info">
                     <h2>{{ project.project_name }}</h2>
                     <p><strong>Fields:</strong>
