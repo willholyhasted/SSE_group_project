@@ -32,6 +32,9 @@ def login():
 
     user_info = pl.read_database(command, connection= ui_conn)
 
+    if user_info.is_empty():  # Handle case where username doesn't exist
+        return render_template("index.html", error="Username does not exist.")
+
     hashed_password_db = user_info[0,"password"]
 
     hashed_password_db_bytes = hashed_password_db.encode()
@@ -41,7 +44,7 @@ def login():
     if bcrypt.checkpw(input_password.encode(), hashed_password_db_bytes):
         return render_template("main.html", events=events)
     else:
-        return render_template("index.html")
+        return render_template("index.html", error="Username and password do not match.")
 
 @login_bp.route("/register")
 def register():

@@ -5,9 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Imperial Project Matcher-Login</title>
     <link rel="stylesheet" href="../static/index_style.css">
-    
+    <script>
+        // Display a pop-up if there's an error
+        function showError(message) {
+            if (message) {
+                alert(message);
+            }
+        }
+    </script>
 </head>
-<body>
+<body onload="showError('{{ error|safe }}')">
 
     <!-- Header Block -->
     <div class="header">
