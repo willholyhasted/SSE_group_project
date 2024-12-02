@@ -135,6 +135,26 @@
        .view-profile-btn:hover {
            background-color: #5AA0D3;
        }
+
+       button {
+   margin: 0;
+   padding: 6px 12px;
+   font-size: 14px;
+   font-weight: bold;
+   background-color: #013a77;
+   color: white;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   display: inline-block;
+   text-align: center;
+}
+
+button:hover {
+   background-color: #0056b3;
+}
+
+
    </style>
 </head>
 <body>
@@ -168,8 +188,6 @@
                    <tr>
                        <td>
                            <span class="applicant-name">{{ applicant.first_name }} {{ applicant.last_name }}</span><br>
-                           <a href="#" class="view-profile-btn">View Profile</a>
-
                             <form class="applicant-name" action="/profile/{{applicant.applicant | lower}}" method="POST">
                                 <button onclick="location.href='#profile/{{applicant.applicant | lower}}'">View My Profile</button>
                             </form>

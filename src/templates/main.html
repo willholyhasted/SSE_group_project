@@ -27,7 +27,11 @@
                     <form class="button-card" action="/manage" method="POST">
                         <h2>Manage Your Project</h2>
                         <p>Keep track of your project's progress and members.</p>
+                        {% if Has_project %}
                         <button onclick="location.href='#manage'">Manage Now</button>
+                        {% else %}
+                        <button onclick="location.href='#manage'" disabled>Manage Now</button>
+                        {% endif %}
                     </form>
                     <form class="button-card" action="/search" method="POST">
                         <h2>Search For a Project</h2>

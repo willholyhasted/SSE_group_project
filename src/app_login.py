@@ -42,7 +42,18 @@ def login():
     events = fetch_events() 
 
     if bcrypt.checkpw(input_password.encode(), hashed_password_db_bytes):
-        return render_template("main.html", events=events)
+        project = f"""
+        SELECT COUNT(*) AS count
+        FROM project_info
+        WHERE username = '{input_username}'
+        """
+        existing_project = pl.read_database(project, connection= ui_conn)
+        print(existing_project[0, "count"])
+        if existing_project[0, "count"] > 0:
+            print(1111)
+            return render_template("main.html", events=events, Has_project=True)
+        print(222)
+        return render_template("main.html", events=events, Has_project=False)
     else:
         return render_template("index.html", error="Username and password do not match.")
 
@@ -64,6 +75,16 @@ def register_submit():
     linkedin = request.form.get("linkedin")
     email = request.form.get("email")
     bio =request.form.get("bio")
+
+    existing_user_query = f"""
+    SELECT COUNT(*) AS count
+    FROM user_info
+    WHERE username = '{username}'
+    """
+    ui_conn = get_db()
+    existing_user = pl.read_database(existing_user_query, connection= ui_conn)
+    if existing_user[0, "count"] > 0:
+        return render_template("register_page.html", error="Username already exists.")
 
     salt = bcrypt.gensalt() #this creates a 60 character hash
     hashed_password = bcrypt.hashpw(input_password.encode(), salt)
@@ -99,4 +120,4 @@ def register_submit():
         return render_template("index.html")
 
     except Exception as e:
-        return render_template("register.html", error = f"An error occurred: {e}")
+        return render_template("register_page.html", error = f"An error occurred: {e}")
