@@ -23,21 +23,23 @@ app.register_blueprint(search_bp)
 
 app.secret_key = "your_secret_key"  # Required for session handling
 
+
 @app.teardown_appcontext
 def cleanup(expection=None):
     close_db(expection)
+
 
 @app.route("/")
 def index():
     return render_template("index.html")
 
 
-@app.route("/project") #function that will inject data to database
+@app.route("/project")  # function that will inject data to database
 def register():
     return render_template("register_page.html")
 
 
 # if __name__ == "__main__":
-    # app.run(debug=True)
-    # port = int(os.getenv("PORT", 5000))  # Default to 5000 if PORT is not set
-    # app.run(host="0.0.0.0", port=port)
+# app.run(debug=True)
+# port = int(os.getenv("PORT", 5000))  # Default to 5000 if PORT is not set
+# app.run(host="0.0.0.0", port=port)
