@@ -16,7 +16,8 @@ if response.status_code == 200:
     # Define namespaces to handle the XML correctly
     namespaces = {
         "atom": "http://www.w3.org/2005/Atom",
-        "imperialnewsevents": "http://www3.imperial.ac.uk/imperialnewsevents/schema",
+        "imperialnewsevents": "http://www3.imperial.ac.uk/" \
+        "imperialnewsevents/schema",
     }
 
     # Extract event details
@@ -83,10 +84,12 @@ if response.status_code == 200:
             # Convert to UK time format
             if formatted_start_date.date() == formatted_end_date.date():
                 # Same day: show date once and time range
-                display_time = f"{formatted_start_date.strftime('%d-%m-%Y %H:%M')}-{formatted_end_date.strftime('%H:%M')}"
+                display_time = (f"{formatted_start_date.strftime('%d-%m-%Y %H:%M')}-"
+                                f"{formatted_end_date.strftime('%H:%M')}")
             else:
                 # Different days: show full date and time range
-                display_time = f"{formatted_start_date.strftime('%d-%m-%Y %H:%M')} - {formatted_end_date.strftime('%d-%m-%Y %H:%M')}"
+                display_time = (f"{formatted_start_date.strftime('%d-%m-%Y %H:%M')}-"
+                                f" {formatted_end_date.strftime('%d-%m-%Y %H:%M')}")
         else:
             # Fallback to raw strings if parsing fails
             display_time = f"{start_date} - {end_date}"
