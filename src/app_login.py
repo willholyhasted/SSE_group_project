@@ -52,7 +52,7 @@ def login():
     else:
         return render_template("index.html", error="Username and password do not match.")
 
-@login_bp.route("/main", methods = ["POST"])
+@login_bp.route("/main", methods = ["GET", "POST"])
 def main():
 
     username =  session.get('username')
@@ -60,18 +60,17 @@ def main():
     events = fetch_events()
 
     project = f"""
-            SELECT COUNT(*) AS count
+            SELECT project_id
             FROM project_info
             WHERE username = '{username}'
             """
     ui_conn = get_db()
     existing_project = pl.read_database(project, connection=ui_conn)
 
-
-    if existing_project[0, "count"] > 0:
-        return render_template("main.html", events=events, Has_project=True)
+    if len(existing_project) > 0:
+        return render_template("main.html", project_id =  existing_project[0, "project_id"], events=events, Has_project=True)
     else:
-        return render_template("main.html", events=events, Has_project=False)
+        return render_template("main.html", project_id = "", events=events, Has_project=False)
 
 
 
@@ -122,8 +121,8 @@ def register_submit():
         "bio": [bio]
     })
 
-    pl.Config.set_tbl_cols(50)
-    print(user_data_df)
+    #pl.Config.set_tbl_cols(50)
+    #print(user_data_df)
 
     try:
 

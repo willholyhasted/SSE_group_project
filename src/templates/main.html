@@ -19,11 +19,20 @@
             <section class="left-section">
                 <h2 class="main-title">What would you like to do?</h2>
                 <div class="button-container-vertical">
+                    {% if Has_project %}
+                    <form class="button-card" action="/project_details" method="POST">
+                        <h2>View Your Own Project</h2>
+                        <p>Check out your project and your project description here!</p>
+                        <button onclick="location.href='#project_details'">View Now</button>
+                        <input type="hidden" name="project_id" value="{{project_id}}">
+                    </form>
+                    {% else %}
                     <form class="button-card" action="/create" method="POST">
                         <h2>Create Your Own Project</h2>
                         <p>Start a new project and find your team members.</p>
                         <button onclick="location.href='#create'">Create Now</button>
                     </form>
+                    {% endif %}
                     <form class="button-card" action="/manage" method="POST">
                         <h2>Manage Your Project</h2>
                         <p>Keep track of your project's progress and members.</p>
