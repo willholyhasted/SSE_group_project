@@ -24,9 +24,9 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Repositories</th>
+                            <th scope="col">Repository Name</th>
                             <th scope="col">Last Updated Time</th>
-                            <th scope="col">Star</th>
+                            <th scope="col">Stars</th>
                             <th scope="col">Languages</th>
                             <th scope="col">README</th>
                         </tr>
@@ -38,7 +38,11 @@
                                 <td>{{ repo.time }}</td>
                                 <td>{{ repo.star }}</td>
                                 <td>{{ repo.languages | join(", ") }}</td>
-                                <td>{{ repo.readme }}</td>
+                                <td>
+                                    <div class="readme-content">
+                                        {{ repo.readme }}
+                                    </div>
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>
