@@ -36,15 +36,15 @@ jobs:
       #   with:
       #     python-version: 3.12
       # - name: Install requirements
-      #   run: pip install -r requirements.txt 
+      #   run: pip install -r requirements.txt
       # - name: Run pytest
      #    run: pytest ./src/*.py
 
      
 
   deploy-to-impaas:
+    needs: python-formatting
     # needs: python-testing
-    needs: python-install-dependency
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

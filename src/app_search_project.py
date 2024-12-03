@@ -28,12 +28,6 @@ def search_project():
             ORDER BY project_info.project_name
         """
 
-    command_2 = f"""
-                SELECT project_id, applicant, status
-                FROM applications_info
-                WHERE applicant = '{username}'
-            """
-
     ui_conn = get_db()
 
     projects_df = pl.read_database(command, connection=ui_conn)

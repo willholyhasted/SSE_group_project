@@ -1,0 +1,6 @@
+[tool.black]
+line-length = 79
+
+[tool.autoflake]
+remove-all-unused-imports = true
+in-place = true
