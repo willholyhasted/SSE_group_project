@@ -1,12 +1,12 @@
 import polars as pl
-import configparser
-import pandas
-import adbc_driver_postgresql.dbapi
-from string import Template
-from pathlib import Path
-import os
-from flask import Flask, render_template, request, Blueprint, session, redirect, url_for
-import bcrypt
+from flask import (
+    render_template,
+    request,
+    Blueprint,
+    session,
+    redirect,
+    url_for,
+)
 from database.connection import get_db
 
 
@@ -39,7 +39,9 @@ def search_project():
     projects_df = pl.read_database(command, connection=ui_conn)
 
     projects_df = projects_df.with_columns(
-        pl.concat_str(["field1", "field2", "field3"], separator=", ").alias("fields")
+        pl.concat_str(["field1", "field2", "field3"], separator=", ").alias(
+            "fields"
+        )
     )
 
     projects_df = projects_df.with_columns(
@@ -110,7 +112,9 @@ def project_details():
     print(projects_df)
 
     projects_df = projects_df.with_columns(
-        pl.concat_str(["field1", "field2", "field3"], separator=", ").alias("fields")
+        pl.concat_str(["field1", "field2", "field3"], separator=", ").alias(
+            "fields"
+        )
     )
 
     projects_df = projects_df.with_columns(

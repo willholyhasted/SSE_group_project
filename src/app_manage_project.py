@@ -1,12 +1,14 @@
 import polars as pl
 import configparser
-import pandas
-import adbc_driver_postgresql.dbapi
-from string import Template
 from pathlib import Path
-import os
-from flask import Flask, render_template, request, Blueprint, session, redirect, url_for
-import bcrypt
+from flask import (
+    render_template,
+    request,
+    Blueprint,
+    session,
+    redirect,
+    url_for,
+)
 from database.connection import get_db
 
 
@@ -44,7 +46,9 @@ def manage_project():
     print(applications_df)
 
     # project_id, username, first_name, second_name, course, enrolling_year, email, status
-    project_applications_df = applications_df.filter(pl.col("project_id") == project_id)
+    project_applications_df = applications_df.filter(
+        pl.col("project_id") == project_id
+    )
 
     print(project_applications_df)
 

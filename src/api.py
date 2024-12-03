@@ -34,7 +34,9 @@ if response.status_code == 200:
 
         # Extract summary
         summary = entry.find("atom:summary", namespaces)
-        summary = summary.text if summary is not None else "No summary available"
+        summary = (
+            summary.text if summary is not None else "No summary available"
+        )
 
         # Extract start date and time
         start_date_element = entry.find(
@@ -46,7 +48,9 @@ if response.status_code == 200:
             start_date = "Unknown start date"
 
         # Extract end date and time
-        end_date_element = entry.find("imperialnewsevents:event_end_date", namespaces)
+        end_date_element = entry.find(
+            "imperialnewsevents:event_end_date", namespaces
+        )
         if end_date_element is not None:
             end_date = end_date_element.text  # Full date-time value
         else:
@@ -55,7 +59,9 @@ if response.status_code == 200:
         # Extract event link
         event_link = entry.find("atom:link", namespaces)
         event_link = (
-            event_link.attrib["href"] if event_link is not None else "No link available"
+            event_link.attrib["href"]
+            if event_link is not None
+            else "No link available"
         )
 
         # Format the start and end dates for display

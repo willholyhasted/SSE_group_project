@@ -1,12 +1,12 @@
 import polars as pl
-import configparser
-import pandas
-import adbc_driver_postgresql.dbapi
-from string import Template
-from pathlib import Path
-import os
-from flask import Flask, render_template, request, Blueprint, session, redirect, url_for
-import bcrypt
+from flask import (
+    render_template,
+    request,
+    Blueprint,
+    session,
+    redirect,
+    url_for,
+)
 from database.connection import get_db
 
 
@@ -63,7 +63,9 @@ def submit_project():
     WHERE project_name = '{project_name}'
     """
     ui_conn = get_db()
-    existing_project = pl.read_database(existing_project_query, connection=ui_conn)
+    existing_project = pl.read_database(
+        existing_project_query, connection=ui_conn
+    )
     if existing_project[0, "count"] > 0:
         return render_template(
             "project_page.html", error="Project name already exists."
@@ -76,10 +78,14 @@ def submit_project():
         ui_conn = get_db()
 
         project_data_df.write_database(
-            table_name="project_info", if_table_exists="append", connection=ui_conn
+            table_name="project_info",
+            if_table_exists="append",
+            connection=ui_conn,
         )
 
         return redirect(url_for("login.main"))
 
     except Exception as e:
-        return render_template("project_page.html", error=f"An error occurred: {e}")
+        return render_template(
+            "project_page.html", error=f"An error occurred: {e}"
+        )

@@ -1,12 +1,5 @@
 import polars as pl
-import configparser
-import pandas
-import adbc_driver_postgresql.dbapi
-from string import Template
-from pathlib import Path
-import os
-from flask import Flask, render_template, request, Blueprint
-import bcrypt
+from flask import render_template, Blueprint
 from database.connection import get_db
 from flask import session
 import requests
@@ -22,7 +15,9 @@ profile_bp = Blueprint("profile", __name__)
 def create_view(username):
     # SQL command to get the user information
     if username is None:
-        input_username = session.get("username")  # Store the username in the session
+        input_username = session.get(
+            "username"
+        )  # Store the username in the session
     else:
         input_username = username
 
@@ -69,7 +64,9 @@ def create_view(username):
 
         # Format the datetime object into the desired string
         formatted_time = time_obj.strftime("%d %B %Y, %H:%M")
-        response_repo = requests.get(f"https://api.github.com/repos/{full_name}")
+        response_repo = requests.get(
+            f"https://api.github.com/repos/{full_name}"
+        )
         star = response_repo.json()["stargazers_count"]
         response_language = requests.get(
             f"https://api.github.com/repos/{full_name}/languages"
