@@ -82,7 +82,11 @@ def apply_project():
 
 @search_bp.route("/project_details", methods = ["POST", "GET"])
 def project_details():
-    project_id = request.args.get('project_id')
+
+    if request.method == "POST":
+        project_id = request.form['project_id']
+    else:
+        project_id = request.args.get('project_id')
 
     #now get data from the database including project id
 

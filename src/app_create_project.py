@@ -5,7 +5,7 @@ import adbc_driver_postgresql.dbapi
 from string import Template
 from pathlib import Path
 import os
-from flask import Flask, render_template, request, Blueprint, session
+from flask import Flask, render_template, request, Blueprint, session, redirect, url_for
 import bcrypt
 from database.connection import get_db
 
@@ -76,7 +76,7 @@ def submit_project():
             connection=ui_conn
         )
 
-        return render_template("main.html")
+        return redirect(url_for('login.main'))
 
     except Exception as e:
         return render_template("project_page.html", error=f"An error occurred: {e}")
