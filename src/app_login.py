@@ -39,8 +39,16 @@ def login():
     hashed_password_db_bytes = hashed_password_db.encode()
 
     if bcrypt.checkpw(input_password.encode(), hashed_password_db_bytes):
-        return redirect(url_for('login.main'))
-
+        project = f"""
+        SELECT COUNT(*) AS count
+        FROM project_info
+        WHERE username = '{input_username}'
+        """
+        existing_project = pl.read_database(project, connection= ui_conn)
+        print(existing_project[0, "count"])
+        if existing_project[0, "count"] > 0:
+            return render_template("main.html", events=events, Has_project=True)
+        return render_template("main.html", events=events, Has_project=False)
     else:
         return render_template("index.html", error="Username and password do not match.")
 

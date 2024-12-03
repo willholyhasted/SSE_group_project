@@ -34,24 +34,36 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Left Section Styles */
+/* Left Section Styles - Improved Layout */
 .profile-left {
-    flex: 0.7; /* Takes 60% of the width */
-    background-color: #fff7d8; /* White background */
-    padding: 1.5rem;
+    flex: 0.7; /* Adjust width */
+    background-color: #fff7d8;
+    padding: 1rem; /* Reduced padding */
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border: 2px solid #FFD700; /* Gold border */
+    border: 2px solid #FFD700;
+    display: flex; /* Enable flexbox */
+    flex-direction: column; /* Stack elements vertically */
+    gap: 1rem; /* Add consistent spacing */
 }
 
-.profile-left p {
-    margin: 1rem 0;
-    font-size: 1.1rem;
-    color: #555;
+/* Table Styles - Center in Container */
+.table {
+    width: 95%; /* Reduce table width slightly */
+    margin: 0 auto; /* Center horizontally */
+    text-align: left; /* Align text to the left */
+}
+
+/* Adjusted Typography for Links */
+.profile-left p,
+.profile-left a {
+    margin: 0.5rem 0; /* Reduced spacing between lines */
+    font-size: 1rem; /* Slightly smaller font */
 }
 
 .profile-left a {
-    color: #007BFF; /* Blue links */
+    color: #007BFF;
+    font-weight: bold; /* Make links more prominent */
     text-decoration: none;
 }
 
@@ -59,28 +71,63 @@ body {
     text-decoration: underline;
 }
 
-/* Table Styles */
+/* Improved Header Spacing for Left Section */
+.header {
+    margin-bottom: 1.5rem; /* Add spacing below the header */
+}
+/* Table Styles - Adjusted Width */
+
+
+/* General Table Styles */
 .table {
-    width: 100%;
+    width: 100%; /* Table takes full width of the container */
+    margin: 0 auto; /* Center horizontally */
+    text-align: left; /* Align text to the left */
+    border-spacing: 10px;
     border-collapse: collapse;
-    margin-top: 20px;
-    font-size: 0.9rem;
 }
 
+/* Table Header and Cells */
 .table th, .table td {
     border: 1px solid #333; /* Black borders */
     padding: 10px;
-    text-align: center;
+    text-align: center; /* Align content to the center */
 }
 
+/* Header Background Color */
 .table th {
     background-color: #FFD700; /* Gold background */
-    color: #333;
+    color: #333; /* Dark text color */
     font-weight: bold;
 }
 
+/* Cell Background Color */
 .table td {
     background-color: #fff;
+}
+
+/* Make the Last Updated Time column wider */
+.table th:nth-child(2), .table td:nth-child(2) {
+    width: 20%; /* Set specific width */
+    word-wrap: break-word; /* Allow text to wrap */
+    white-space: normal; /* Disable single-line restriction */
+    text-align: center; /* Center-align text */
+}
+
+/* Adjust the README column */
+.table th:nth-child(5), .table td:nth-child(5) {
+    width: 25%; /* Set width to 25% */
+    max-width: 300px; /* Prevent excessive width */
+    text-align: left; /* Align text to the left */
+}
+
+/* README Column Scroll for Overflow */
+.table td:nth-child(5) {
+    height: 150px; /* Fixed height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    background-color: #f9f9f9; /* Light background for contrast */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); /* Inset shadow for better appearance */
+    border-radius: 5px; /* Rounded corners for aesthetic */
 }
 
 .table td a {
@@ -125,4 +172,22 @@ body {
         flex: 1;
         width: 100%;
     }
+}
+
+/* Make README column wider */
+.table th:nth-child(5),
+.table td:nth-child(5) {
+    width: 300px; /* Set a wider width */
+    max-width: 300px; /* Prevent it from getting too wide */
+    text-align: left; /* Align text to the left for better readability */
+}
+
+/* Add vertical scrollbar to README cells */
+.table td:nth-child(5) {
+    height: 150px; /* Set a fixed height for the cells */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 10px; /* Add padding for better spacing */
+    background-color: #f9f9f9; /* Light background for contrast */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); /* Inset shadow for better appearance */
+    border-radius: 5px; /* Optional: Rounded corners */
 }

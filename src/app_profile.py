@@ -11,6 +11,7 @@ from database.connection import get_db
 from flask import session
 import requests
 import base64
+from datetime import datetime
 
 
 profile_bp = Blueprint('profile', __name__)
@@ -69,6 +70,10 @@ def create_view(username):
         full_name = repo['full_name']
         repo_name = full_name.split('/')[1]
         time = repo['updated_at']
+        time_obj = datetime.strptime(time, "%Y-%m-%dT%H:%M:%SZ")
+
+        # Format the datetime object into the desired string
+        formatted_time = time_obj.strftime("%d %B %Y, %H:%M")
         response_repo = requests.get(
             f"https://api.github.com/repos/{full_name}")
         star = response_repo.json()['stargazers_count']
@@ -83,7 +88,7 @@ def create_view(username):
         
         REPOS.append(
             {'repo': repo_name,
-             'time': time,
+             'time': formatted_time,
              'star': star,
              'languages': languages_names,
              'readme': readmetext})

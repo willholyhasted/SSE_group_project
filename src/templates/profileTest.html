@@ -39,7 +39,11 @@
 						<td style="border: 1px solid black; padding: 10px;">{{ repo.repo }}</td>
 						<td style="border: 1px solid black; padding: 10px;">{{ repo.time }}</td>
 						<td style="border: 1px solid black; padding: 10px;">{{ repo.star }}</td>
-						<td style="border: 1px solid black; padding: 10px;">{{ repo.languages }}</td>
+                        <td style="border: 1px solid black; padding: 10px;">
+                        {% for language in repo.languages %}
+						{{ language }} 
+                        {% endfor %}
+                        </td>
 						<td style="border: 1px solid black; padding: 10px;">{{ repo.readme }}</td>
 					  </tr>
                       {% endfor %}
