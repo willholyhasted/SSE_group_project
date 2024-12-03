@@ -23,8 +23,8 @@ body {
 /* Profile Container */
 .profile-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-direction: column-reverse; /* Reverses the order of the child elements */
+    justify-content: flex-start; /* Aligns to the top */
     padding: 2rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -46,6 +46,15 @@ body {
     gap: 1rem;
 }
 
+/* Right Section Styles */
+.profile-right {
+    flex: 0.35;
+    background-color: #e4f0f4;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 /* Adjusted Typography for Left Section */
 .profile-left p,
 .profile-left a {
@@ -64,14 +73,6 @@ body {
     text-decoration: underline;
 }
 
-/* Right Section Styles */
-.profile-right {
-    flex: 0.35;
-    background-color: #e4f0f4;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
 
 .profile-right h2 {
     font-size: 1.5rem;
