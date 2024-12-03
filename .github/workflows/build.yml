@@ -40,6 +40,8 @@ jobs:
       # - name: Run pytest
      #    run: pytest ./src/*.py
 
+     
+
   deploy-to-impaas:
     # needs: python-testing
     needs: python-install-dependency
@@ -47,12 +49,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Set Tsuru environment variable
+        run: |
+          tsuru env-set DATA_ANALYSIS_DB_URL=${{ secrets.DATA_ANALYSIS_DB_URL }} --app=wh1124-app
+          tsuru env-set FLASK_ENV=production --app=wh1124-app
+        env:
+          DATA_ANALYSIS_DB_URL: ${{ secrets.DATA_ANALYSIS_DB_URL }}  # Pass the secret to the Tsuru command
+          FLASK_ENV: production  # Optionally pass the FLASK_ENV variable here
+
       - name: ImPaaS-Deploy
         uses: /impaas/impaas-deploy@v3
         with:
           app-name: wh1124-app
           deployment-token: ${{ secrets.IMPAAS_DEPLOY_TOKEN }}
           method: PLATFORM
-          # id deploy-token-wh1124v2
-          # team super5
           # app wh1124-app
