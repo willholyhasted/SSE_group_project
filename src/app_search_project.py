@@ -10,12 +10,13 @@ import bcrypt
 from database.connection import get_db
 
 
-search_bp = Blueprint('search', __name__)
+search_bp = Blueprint("search", __name__)
 
-@search_bp.route("/search", methods = ["POST", "GET"])
+
+@search_bp.route("/search", methods=["POST", "GET"])
 def search_project():
 
-    username = session.get('username')
+    username = session.get("username")
 
     command = f"""
             SELECT project_info.project_id, project_name, description, field1, field2, field3, application_info.applicant, status
@@ -37,16 +38,20 @@ def search_project():
 
     projects_df = pl.read_database(command, connection=ui_conn)
 
-    projects_df =  projects_df.with_columns(
+    projects_df = projects_df.with_columns(
         pl.concat_str(["field1", "field2", "field3"], separator=", ").alias("fields")
     )
 
     projects_df = projects_df.with_columns(
-        pl.col("fields").str.strip_chars(', ').alias("fields")  # Remove trailing comma and space
+        pl.col("fields")
+        .str.strip_chars(", ")
+        .alias("fields")  # Remove trailing comma and space
     )
 
     projects_df = projects_df.with_columns(
-        pl.col("fields").str.strip_chars(', ').alias("fields")  # Remove trailing comma and space
+        pl.col("fields")
+        .str.strip_chars(", ")
+        .alias("fields")  # Remove trailing comma and space
     )
 
     print(projects_df)
@@ -56,12 +61,11 @@ def search_project():
     return render_template("search_page_new.html", projects=projects_dict)
 
 
-
-@search_bp.route("/apply_project", methods = ["POST", "GET"])
+@search_bp.route("/apply_project", methods=["POST", "GET"])
 def apply_project():
 
-    username = session.get('username')
-    project_id = request.form['project_id']
+    username = session.get("username")
+    project_id = request.form["project_id"]
 
     command = f"""
             INSERT INTO applications_info
@@ -76,19 +80,20 @@ def apply_project():
     ui_conn.commit()
     ui_cur.close()
 
-    #we want to write to database adding an application
-    #then the button should turn grey if already applied
-    return redirect(url_for('search.search_project'))
+    # we want to write to database adding an application
+    # then the button should turn grey if already applied
+    return redirect(url_for("search.search_project"))
 
-@search_bp.route("/project_details", methods = ["POST", "GET"])
+
+@search_bp.route("/project_details", methods=["POST", "GET"])
 def project_details():
 
     if request.method == "POST":
-        project_id = request.form['project_id']
+        project_id = request.form["project_id"]
     else:
-        project_id = request.args.get('project_id')
+        project_id = request.args.get("project_id")
 
-    #now get data from the database including project id
+    # now get data from the database including project id
 
     command = f"""
                     SELECT project_id, project_info.username, first_name, second_name, project_name, description, people, field1, field2, field3, project_info.email
@@ -109,11 +114,15 @@ def project_details():
     )
 
     projects_df = projects_df.with_columns(
-        pl.col("fields").str.strip_chars(', ').alias("fields")  # Remove trailing comma and space
+        pl.col("fields")
+        .str.strip_chars(", ")
+        .alias("fields")  # Remove trailing comma and space
     )
 
     projects_df = projects_df.with_columns(
-        pl.col("fields").str.strip_chars(', ').alias("fields")  # Remove trailing comma and space
+        pl.col("fields")
+        .str.strip_chars(", ")
+        .alias("fields")  # Remove trailing comma and space
     )
 
     print(projects_df)
@@ -123,5 +132,3 @@ def project_details():
     print(projects_dict)
 
     return render_template("project_infopage.html", projects=projects_dict)
-
-
