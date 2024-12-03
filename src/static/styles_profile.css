@@ -4,15 +4,15 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #f0f8ff; /* Light blue background */
-    color: #333; /* Default text color */
-    line-height: 1.6; /* Improve text readability */
+    background-color: #f0f8ff;
+    color: #333;
+    line-height: 1.6;
 }
 
 /* Header Style */
 .header {
     text-align: center;
-    background-color: #FFD700; /* Gold background */
+    background-color: #FFD700;
     padding: 20px 0;
     font-size: 30px;
     font-weight: bold;
@@ -29,41 +29,34 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     gap: 1.5rem;
-    background-color: #f4f4f4; /* Light gray background */
+    background-color: #f4f4f4;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Left Section Styles - Improved Layout */
+/* Left Section Styles */
 .profile-left {
-    flex: 0.7; /* Adjust width */
+    flex: 0.7;
     background-color: #fff7d8;
-    padding: 1rem; /* Reduced padding */
+    padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border: 2px solid #FFD700;
-    display: flex; /* Enable flexbox */
-    flex-direction: column; /* Stack elements vertically */
-    gap: 1rem; /* Add consistent spacing */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
-/* Table Styles - Center in Container */
-.table {
-    width: 95%; /* Reduce table width slightly */
-    margin: 0 auto; /* Center horizontally */
-    text-align: left; /* Align text to the left */
-}
-
-/* Adjusted Typography for Links */
+/* Adjusted Typography for Left Section */
 .profile-left p,
 .profile-left a {
-    margin: 0.5rem 0; /* Reduced spacing between lines */
-    font-size: 1rem; /* Slightly smaller font */
+    margin: 0.5rem 0;
+    font-size: 1.2rem; /* Increased font size */
 }
 
+/* Adjust Link Styling */
 .profile-left a {
     color: #007BFF;
-    font-weight: bold; /* Make links more prominent */
+    font-weight: bold;
     text-decoration: none;
 }
 
@@ -71,82 +64,13 @@ body {
     text-decoration: underline;
 }
 
-/* Improved Header Spacing for Left Section */
-.header {
-    margin-bottom: 1.5rem; /* Add spacing below the header */
-}
-/* Table Styles - Adjusted Width */
-
-
-/* General Table Styles */
-.table {
-    width: 100%; /* Table takes full width of the container */
-    margin: 0 auto; /* Center horizontally */
-    text-align: left; /* Align text to the left */
-    border-spacing: 10px;
-    border-collapse: collapse;
-}
-
-/* Table Header and Cells */
-.table th, .table td {
-    border: 1px solid #333; /* Black borders */
-    padding: 10px;
-    text-align: center; /* Align content to the center */
-}
-
-/* Header Background Color */
-.table th {
-    background-color: #FFD700; /* Gold background */
-    color: #333; /* Dark text color */
-    font-weight: bold;
-}
-
-/* Cell Background Color */
-.table td {
-    background-color: #fff;
-}
-
-/* Make the Last Updated Time column wider */
-.table th:nth-child(2), .table td:nth-child(2) {
-    width: 20%; /* Set specific width */
-    word-wrap: break-word; /* Allow text to wrap */
-    white-space: normal; /* Disable single-line restriction */
-    text-align: center; /* Center-align text */
-}
-
-/* Adjust the README column */
-.table th:nth-child(5), .table td:nth-child(5) {
-    width: 25%; /* Set width to 25% */
-    max-width: 300px; /* Prevent excessive width */
-    text-align: left; /* Align text to the left */
-}
-
-/* README Column Scroll for Overflow */
-.table td:nth-child(5) {
-    height: 150px; /* Fixed height for scrolling */
-    overflow-y: auto; /* Enable vertical scrolling */
-    background-color: #f9f9f9; /* Light background for contrast */
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); /* Inset shadow for better appearance */
-    border-radius: 5px; /* Rounded corners for aesthetic */
-}
-
-.table td a {
-    color: #007BFF;
-    text-decoration: none;
-}
-
-.table td a:hover {
-    text-decoration: underline;
-}
-
 /* Right Section Styles */
 .profile-right {
-    flex: 0.35; /* Takes 35% of the width */
-    background-color: #e4f0f4; /* Light blue */
+    flex: 0.35;
+    background-color: #e4f0f4;
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border: 2px solid #007BFF; /* Blue border */
 }
 
 .profile-right h2 {
@@ -161,6 +85,59 @@ body {
     line-height: 1.8;
 }
 
+/* Table Styles */
+.table {
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    text-align: left;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Apply font-family here */
+}
+
+.table th, .table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Table Header */
+.table th {
+    background-color: #dddbc8ca;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Table Rows */
+.table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Readme Column Styles */
+.table td:nth-child(5) {
+    height: 150px;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.table td a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.table td a:hover {
+    text-decoration: underline;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .profile-container {
@@ -169,25 +146,6 @@ body {
     }
 
     .profile-left, .profile-right {
-        flex: 1;
         width: 100%;
     }
-}
-
-/* Make README column wider */
-.table th:nth-child(5),
-.table td:nth-child(5) {
-    width: 300px; /* Set a wider width */
-    max-width: 300px; /* Prevent it from getting too wide */
-    text-align: left; /* Align text to the left for better readability */
-}
-
-/* Add vertical scrollbar to README cells */
-.table td:nth-child(5) {
-    height: 150px; /* Set a fixed height for the cells */
-    overflow-y: auto; /* Enable vertical scrolling */
-    padding: 10px; /* Add padding for better spacing */
-    background-color: #f9f9f9; /* Light background for contrast */
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); /* Inset shadow for better appearance */
-    border-radius: 5px; /* Optional: Rounded corners */
 }

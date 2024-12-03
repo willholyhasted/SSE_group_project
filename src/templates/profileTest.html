@@ -20,42 +20,32 @@
             <p><strong>Enrolling Year:</strong> {{ enrolling_year }}</p>
             <p><strong>Email:</strong> {{ email }}</p>
             <p><strong>GitHub URL:</strong> <a href="{{ github_url }}" target="_blank">{{ github_url }}</a></p>
-            {%if repos%}
-			
-			
-				<table class="table", style="width: 80%; border-spacing: 10px; text-align: center; border: 1px solid black; border-collapse: collapse; margin-top: 20px;">
-					<thead>
-					  <tr>
-						<th scope="col" style="border: 1px solid black; padding: 10px;">Repositories</th>
-						<th scope="col" style="border: 1px solid black; padding: 10px;">Last Updated Time</th>
-						<th scope="col" style="border: 1px solid black; padding: 10px;">Star</th>
-						<th scope="col" style="border: 1px solid black; padding: 10px;">Languages</th>
-                        <th scope="col" style="border: 1px solid black; padding: 10px;">README</th> <!-- Limit the number of words-->
-					  </tr>
-					</thead>
-					<tbody>
-                        {%for repo in repos %}
-					  <tr>
-						<td style="border: 1px solid black; padding: 10px;">{{ repo.repo }}</td>
-						<td style="border: 1px solid black; padding: 10px;">{{ repo.time }}</td>
-						<td style="border: 1px solid black; padding: 10px;">{{ repo.star }}</td>
-                        <td style="border: 1px solid black; padding: 10px;">
-                        {% for language in repo.languages %}
-						{{ language }} 
+            {% if repos %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Repositories</th>
+                            <th scope="col">Last Updated Time</th>
+                            <th scope="col">Star</th>
+                            <th scope="col">Languages</th>
+                            <th scope="col">README</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for repo in repos %}
+                            <tr>
+                                <td>{{ repo.repo }}</td>
+                                <td>{{ repo.time }}</td>
+                                <td>{{ repo.star }}</td>
+                                <td>{{ repo.languages | join(", ") }}</td>
+                                <td>{{ repo.readme }}</td>
+                            </tr>
                         {% endfor %}
-                        </td>
-						<td style="border: 1px solid black; padding: 10px;">{{ repo.readme }}</td>
-					  </tr>
-                      {% endfor %}
-					</tbody>
-				</table>
-
-				<br>
-			
-			</ul>
-		{% else %}
-			<p>No repositories found for this user.</p>
-		{% endif %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No repositories found for this user.</p>
+            {% endif %}
             <p><strong>LinkedIn URL:</strong> <a href="{{ linkedin_url }}" target="_blank">{{ linkedin_url }}</a></p>
         </div>
 
