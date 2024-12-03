@@ -19,7 +19,7 @@ body {
     color: #333;
     letter-spacing: 1px;
     position: relative;
-}
+}   
 
 .profile-button {
     position: absolute;
@@ -54,20 +54,19 @@ body {
     gap: 2rem;
     width: 100%;
     max-width: 1200px;
-    align-items: stretch; /* 子元素高度相同 */
+    align-items: stretch;
 }
 
-/* Left Section: Takes 2/3 */
 .left-section {
-    flex: 0.67; /* 左側佔2/3寬度 */
+    flex: 0.6; /* Reduce the width of the left section */
     padding: 2rem;
-    background-color: #FFF9E6; /* 淺黃色背景 */
+    background-color: #FFF9E6;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    align-items: center; /* 子元素置中 */
-    justify-content: space-between; /* 均分垂直空間 */
+    align-items: center;
+    justify-content: space-between;
 }
 
 .main-title {
@@ -139,22 +138,16 @@ button:disabled {
 
 /* Right Section: Takes 1/3 */
 .right-section {
-    flex: 0.33;
+    flex: 0.4; /* Slightly larger width for the right section */
     background-color: #d5e9f1;
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-}main
-
-.small-title {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    text-align: center;
-    color: #333;
+    align-items: stretch;
+    justify-content: flex-start;
+    height: auto; /* Let the section size adjust based on its content */
 }
 
 .events-container {
@@ -162,7 +155,25 @@ button:disabled {
     flex-direction: column;
     gap: 1.5rem;
     width: 100%;
-    align-items: center;
+    max-height: 600px; /* Increased to allow more events to display */
+    overflow-y: scroll; /* Enable vertical scrolling for overflow */
+    padding-right: 10px; /* Add space for scrollbar */
+    scrollbar-width: thin; /* Make scrollbar thinner (for Firefox) */
+    scrollbar-color: #007BFF #f4f4f4; /* Customize scrollbar colors */
+}
+
+/* Scrollbar styling for Webkit-based browsers */
+.events-container::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.events-container::-webkit-scrollbar-thumb {
+    background-color: #007BFF; /* Color of the scrollbar handle */
+    border-radius: 4px; /* Rounded edges for the scrollbar handle */
+}
+
+.events-container::-webkit-scrollbar-track {
+    background-color: #f4f4f4; /* Background color of the scrollbar track */
 }
 
 .event {
