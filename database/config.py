@@ -1,6 +1,6 @@
-
 import os
 import configparser
+
 
 def load_db_config():
     """Load the database configuration based on the environment."""
@@ -14,6 +14,9 @@ def load_db_config():
         # In local, read from the secret.ini file
         config = configparser.ConfigParser()
         config.read("database/secret.ini")
-        if "source" not in config or "data_analysis_db_url" not in config["source"]:
+        if (
+            "source" not in config
+            or "data_analysis_db_url" not in config["source"]
+        ):
             raise RuntimeError("Database URL not found in secret.ini.")
         return config["source"]["data_analysis_db_url"]
