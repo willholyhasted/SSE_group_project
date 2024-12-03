@@ -1,13 +1,13 @@
 name: Build
 on: [push]
 jobs:
-  #python-install-dependency:
-  #  runs-on: ubuntu-latest
-  #  steps: 
-  #    - name: Checkout
-  #      uses: actions/checkout@v4
-  #    - name: Install dependecies
-  #      run: pip install -r requirements.txt 
+  python-install-dependency:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install dependecies
+        run: pip install -r requirements.txt 
 
 
   # python-formatting:
@@ -40,8 +40,11 @@ jobs:
       # - name: Run pytest
      #    run: pytest ./src/*.py
 
+     
+
   deploy-to-impaas:
     # needs: python-testing
+    needs: python-install-dependency
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -52,6 +55,4 @@ jobs:
           app-name: wh1124-app
           deployment-token: ${{ secrets.IMPAAS_DEPLOY_TOKEN }}
           method: PLATFORM
-          # id deploy-token-wh1124v2
-          # team super5
           # app wh1124-app

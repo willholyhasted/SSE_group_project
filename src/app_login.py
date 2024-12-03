@@ -5,7 +5,7 @@ import adbc_driver_postgresql.dbapi
 from string import Template
 from pathlib import Path
 import os
-from flask import Flask, render_template, request, Blueprint, session
+from flask import Flask, render_template, request, Blueprint, session, redirect, url_for
 import bcrypt
 from database.connection import get_db
 from .api import fetch_events
@@ -36,10 +36,7 @@ def login():
         return render_template("index.html", error="Username does not exist.")
 
     hashed_password_db = user_info[0,"password"]
-
     hashed_password_db_bytes = hashed_password_db.encode()
-
-    events = fetch_events() 
 
     if bcrypt.checkpw(input_password.encode(), hashed_password_db_bytes):
         project = f"""
@@ -54,6 +51,29 @@ def login():
         return render_template("main.html", events=events, Has_project=False)
     else:
         return render_template("index.html", error="Username and password do not match.")
+
+@login_bp.route("/main", methods = ["POST"])
+def main():
+
+    username =  session.get('username')
+
+    events = fetch_events()
+
+    project = f"""
+            SELECT COUNT(*) AS count
+            FROM project_info
+            WHERE username = '{username}'
+            """
+    ui_conn = get_db()
+    existing_project = pl.read_database(project, connection=ui_conn)
+
+
+    if existing_project[0, "count"] > 0:
+        return render_template("main.html", events=events, Has_project=True)
+    else:
+        return render_template("main.html", events=events, Has_project=False)
+
+
 
 @login_bp.route("/register")
 def register():
