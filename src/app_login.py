@@ -50,9 +50,7 @@ def login():
         existing_project = pl.read_database(project, connection= ui_conn)
         print(existing_project[0, "count"])
         if existing_project[0, "count"] > 0:
-            print(1111)
             return render_template("main.html", events=events, Has_project=True)
-        print(222)
         return render_template("main.html", events=events, Has_project=False)
     else:
         return render_template("index.html", error="Username and password do not match.")
