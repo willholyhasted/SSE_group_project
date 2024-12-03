@@ -1,11 +1,12 @@
 import polars as pl
-import configparser
-import pandas
-import adbc_driver_postgresql.dbapi
-from string import Template
-from pathlib import Path
-import os
-from flask import Flask, render_template, request, Blueprint, session, redirect, url_for
+from flask import (
+    render_template,
+    request,
+    Blueprint,
+    session,
+    redirect,
+    url_for,
+)
 import bcrypt
 from database.connection import get_db
 from .api import fetch_events
@@ -99,7 +100,9 @@ def register_submit():
     ui_conn = get_db()
     existing_user = pl.read_database(existing_user_query, connection=ui_conn)
     if existing_user[0, "count"] > 0:
-        return render_template("register_page.html", error="Username already exists.")
+        return render_template(
+            "register_page.html", error="Username already exists."
+        )
 
     salt = bcrypt.gensalt()  # this creates a 60 character hash
     hashed_password = bcrypt.hashpw(input_password.encode(), salt)
@@ -128,10 +131,14 @@ def register_submit():
         ui_conn = get_db()
 
         user_data_df.write_database(
-            table_name="user_info", if_table_exists="append", connection=ui_conn
+            table_name="user_info",
+            if_table_exists="append",
+            connection=ui_conn,
         )
 
         return render_template("index.html")
 
     except Exception as e:
-        return render_template("register_page.html", error=f"An error occurred: {e}")
+        return render_template(
+            "register_page.html", error=f"An error occurred: {e}"
+        )
