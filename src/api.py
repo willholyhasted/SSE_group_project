@@ -16,8 +16,7 @@ if response.status_code == 200:
     # Define namespaces to handle the XML correctly
     namespaces = {
         "atom": "http://www.w3.org/2005/Atom",
-        "imperialnewsevents": "http://www3.imperial.ac.uk/" \
-        "imperialnewsevents/schema",
+        "imperialnewsevents": "http://www3.imperial.ac.uk/imperialnewsevents/schema",
     }
 
     # Extract event details
@@ -27,7 +26,7 @@ if response.status_code == 200:
         category = entry.find("imperialnewsevents:category", namespaces)
         category = category.text if category is not None else "No category"
 
-        if category != "Workshop":
+        if category not in ["Workshop", "Seminar", "Practice session", "Training Course"]:
             continue  # Filter for workshops only
 
         # Extract title
