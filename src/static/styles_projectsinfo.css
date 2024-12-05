@@ -13,7 +13,7 @@ body {
 .header {
     text-align: center;
     background-color: #FFD700; /* Gold background */
-    padding: 20px 0;
+    padding: 12px 0;
     font-size: 30px;
     font-weight: bold;
     color: #333;
@@ -30,6 +30,7 @@ body {
 
 /* Project Details Container */
 .project-details {
+    font-size: 1.2rem;
     background-color: #fff; /* White background */
     border: 2px solid #FFD700; /* Gold border */
     border-radius: 10px; /* Rounded corners */
@@ -40,7 +41,7 @@ body {
 }
 
 .project-details h2 {
-    font-size: 2rem;
+    font-size: 3rem;
     color: #007BFF; /* Blue color for project title */
     margin-bottom: 1rem;
 }
