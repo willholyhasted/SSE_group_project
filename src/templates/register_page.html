@@ -1,9 +1,16 @@
+<!-- 
+This HTML file is a registration page for creating a user account. 
+It includes fields for personal details, education information, and social profiles, with client-side validation for unique usernames. 
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+
+    <!-- JavaScript for checking username availability -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const usernameInput = document.getElementById("username");
@@ -41,6 +48,7 @@
         });
         </script>
         
+     <!-- Inline CSS for styling the registration page -->
     <style>
         .error-message {
             color: red;
@@ -161,25 +169,35 @@
     </style>
 </head>
 <body>
+    <!-- Header section with page title -->
     <div class="header">Welcome to the Registration Page</div>
+
+    <!-- Main container for the registration form -->
     <div class="container">
         <h2>Create Your Account</h2>
+        <!-- Error message block -->
         {% if error %}
         <div class="error-message">{{ error }}</div>
         {% endif %}
+
+        <!-- Registration form -->
         <form action="/registerSubmit" method="POST">
+            <!-- Username field with real-time validation -->
             <label for="username">Username</label>
             <input type="text" id="username" name="username" placeholder="Enter your username" required>
 
+            <!-- Password field -->
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Create a password" required>
 
+             <!-- Personal information fields -->
             <label for="first-name">First Name</label>
             <input type="text" id="first-name" name="first-name" placeholder="Enter your first name" required>
 
             <label for="last-name">Last Name</label>
             <input type="text" id="last-name" name="last-name" placeholder="Enter your last name" required>
 
+            <!-- Education details -->
             <label for="degree">Degree</label>
             <select id="degree" name="degree" required>
                 <option value="">Select your degree</option>
@@ -194,21 +212,26 @@
             <label for="enrolling-year">Enrolling Year (e.g. 2024)</label>
             <input type="text" id="enrolling-year" name="enrolling-year" placeholder="Enter your enrolling year" required>
 
+            <!-- Social media fields -->
             <label for="github">GitHub (URL)</label>
             <input type="url" id="github" name="github" placeholder="Enter your GitHub profile link">
 
             <label for="linkedin">LinkedIn (URL)</label>
             <input type="url" id="linkedin" name="linkedin" placeholder="Enter your LinkedIn profile link">
 
+            <!-- Contact information -->
             <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
+            <!-- Bio field -->
             <label for="bio">Bio</label>
             <textarea id="bio" name="bio" placeholder="Tell us about yourself" rows="3"></textarea>
 
-            
+            <!-- Submit button -->
             <button type="submit">Register</button>
         </form>
+
+        <!-- Login link for existing users -->
         <div class="register-link">
             Already have an account? <a href="#">Log in</a>
         </div>

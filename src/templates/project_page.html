@@ -1,3 +1,8 @@
+<!-- 
+This HTML file contains a form for creating a new project. 
+It includes fields for project details, such as name, description, people count, and fields of interest, with dynamic error handling and JavaScript for input validation.
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -144,14 +149,17 @@
     </style>
 </head>
 <body>
-
+    <!-- Header displaying the page title -->
     <div class="header">Project Details</div>
-
+    <!-- Main container for the form -->
     <div class="container">
         <h2>Create a New Project</h2>
+        <!-- Display error message if any -->
         {% if error %}
         <div class="error-message">{{ error }}</div>
         {% endif %}
+
+        <!-- Form for submitting project details -->
         <form action="/project" method="POST" id="project-form">
             <div class="form-group">
                 <label for="project-name">Project Name</label>
@@ -167,7 +175,9 @@
             </div>
             <div class="form-group">
                 <label for="field">Field</label>
+                <!-- Group of checkboxes for selecting fields -->
                 <div class="checkbox-group" id="checkbox-group">
+                    <!-- Each checkbox with a label -->
                     <label>
                         <input type="checkbox" name="field" value="Computer Science"> Computer Science
                     </label>
@@ -206,6 +216,7 @@
                     </label>
                     <small>Select up to 3 options</small>
                 </div>
+                 <!-- Error message for checkbox selection -->
                 <div class="error-message" id="error-message" style="display:none;">You can select a maximum of 3 options.</div>
             </div>
             <div class="form-group">
@@ -221,8 +232,9 @@
         </footer>
     </div>
 
+     <!-- JavaScript to handle checkbox selection validation -->
     <script>
-        // JavaScript to limit the number of checkboxes that can be selected
+        // Limit the number of selected checkboxes to 3
         const checkboxGroup = document.getElementById('checkbox-group');
         const errorMessage = document.getElementById('error-message');
         const checkboxes = checkboxGroup.querySelectorAll('input[type="checkbox"]');

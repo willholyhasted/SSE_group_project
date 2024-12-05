@@ -1,3 +1,8 @@
+<!-- 
+This HTML file allows users to search and apply for projects. 
+Users can filter projects by field, view project details, and apply directly. 
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,6 +29,7 @@
         <div class="filter-container">
             <label for="field-filter">Filter by Field:</label>
             <select id="field-filter" onchange="filterProjects()">
+                <!-- Dropdown options for filtering projects -->
                 <option value="all">All Fields</option>
                 <option value="Arts">Arts</option>
                 <option value="Business">Business</option>
@@ -41,32 +47,41 @@
         </div>
         <!-- Projects Container -->
         <div class="projects-container">
+            <!-- Loop to display projects dynamically -->
             {% for project in projects %}
             <a href="/project_details?project_id={{project.project_id}}" class="project-row" data-field="{{ project.fields }}">
+                <!-- Display project information -->
                 <div class="project-info">
                     <h2>{{ project.project_name }}</h2>
                     <p><strong>Fields:</strong>
                         {{ project.fields  }}</p>
                     <p class="description">{{ project.description }}</p>
                 </div>
+                 <!-- Conditional rendering for application status -->
                 {% if project.status is none and project.applicant is none %}
+                 <!-- Display 'Apply Now' button for eligible projects -->
                 <form action="/apply_project" method="POST">
                     <input type="hidden" name="project_id" value="{{ project.project_id }}">
                     <button type = "submit" class = "apply-button">Apply Now</button>
                 </form>
                 {% elif project.status is none %}
+                 <!-- Display 'Applied!' status if the user has already applied -->
                 <span class="applied-status">Applied!</span>
                 {% elif project.status %}
+                 <!-- Display 'Accepted' status if the application is accepted -->
                 <span class="accepted-status">Accepted</span>
                 {% else %}
+                <!-- Display 'Rejected' status if the application is rejected -->
                 <span class="rejected-status">Rejected</span>
                 {% endif %}
             </a>
             {% endfor %}
         </div>
-
     </main>
     <script>
+        /**
+         * Filters the projects displayed based on the selected field.
+         */
         function filterProjects() {
             const filterValue = document.getElementById('field-filter').value;
             const projectRows = document.querySelectorAll('.project-row');
@@ -81,7 +96,7 @@
             });
         }
 
-        // Initialize filter to show all projects on page load
+        // Show all projects by default on page load
         window.onload = filterProjects;
     </script>
 </body>
