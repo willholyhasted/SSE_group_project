@@ -1,3 +1,8 @@
+<!-- 
+    This HTML file is for managing project details. It displays project information, 
+    a list of applicants with their details, and actions to accept or decline their applications.
+    Includes responsive styling for readability and interactivity.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -187,17 +192,20 @@ button:hover {
                     {% for applicant in applicants %}
                    <tr>
                        <td>
+                            <!-- Applicant's name with a link to their profile -->
                            <span class="applicant-name">{{ applicant.first_name }} {{ applicant.last_name }}</span><br>
                             <form class="applicant-name" action="/profile/{{applicant.applicant | lower}}" method="POST">
                                 <button onclick="location.href='#profile/{{applicant.applicant | lower}}'">View My Profile</button>
                             </form>
                             
                        </td>
+                       <!-- Applicant's details -->
                        <td>{{ applicant.course }}</td>
                        <td>{{ applicant.enrolling_year }}</td>
                        <td>
                             <a href="mailto:{{ applicant.email }}">{{ applicant.email }}
                        </td>
+                       <!-- Actions to accept or decline the applicant -->
                        <td>
                            <div id="action-{{ applicant.first_name | lower}}">
                                 {% if applicant.status is none %}
