@@ -1,3 +1,8 @@
+<!-- 
+ This HTML file dynamically displays project details.
+Each project includes information such as the project name, founder details, field, description, and members. 
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,14 +17,21 @@
     </header>
     <main class="main">
         <div class="project-details">
+            <!-- Loop through the 'projects' list to display project information -->
             {% for project in projects %}
+                <!-- Display project name -->
                 <h2>{{project.project_name}}</h2>
+                <!-- Display founder's full name -->
                 <p><strong>Founder Name:</strong>{{" " + project.first_name + " " + project.second_name }}</p>
+                <!-- Display project field -->
                 <p><strong>Field:</strong> {{project.fields}}</p>
+                <!-- Display project description -->
                 <p class="description"><strong>Description:</strong>
                 {{project.description}}
                 </p>
+                 <!-- Display number of project members -->
                 <p><strong>Members:</strong> {{project.people}}</p>
+                 <!-- Display founder's email with a mailto link -->
                 <p><strong>Founder Email:</strong> <a href="mailto:founder@example.com">{{project.email}}</a></p>
             {% endfor %}
         </div>
