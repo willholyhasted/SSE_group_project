@@ -1,3 +1,8 @@
+<!-- 
+    This HTML file represents the main interface for the application. 
+    It includes options for viewing, creating, managing, or searching for projects, 
+    as well as a section highlighting upcoming workshops or events.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +12,7 @@
     <link rel="stylesheet" href="../static/styles_main.css">
 </head>
 <body>
+    <!-- Header: Displays the app title and a button to view the user's profile -->
     <header class="header">
         <h1>Let's Match a Project!</h1>
         <form class="profile-button" action="/profile/" method="POST">
@@ -20,6 +26,7 @@
                 <h2 class="main-title">What would you like to do?</h2>
                 <div class="button-container-vertical">
                     {% if Has_project %}
+                    <!-- Option to view the user's project details if they already have a project -->
                     <form class="button-card" action="/project_details" method="POST">
                         <h2>View Your Own Project</h2>
                         <p>Check out your project and your project description here!</p>
@@ -27,12 +34,14 @@
                         <input type="hidden" name="project_id" value="{{project_id}}">
                     </form>
                     {% else %}
+                     <!-- Option to create a new project if the user has no project -->
                     <form class="button-card" action="/create" method="POST">
                         <h2>Create Your Own Project</h2>
                         <p>Start a new project and find your team members.</p>
                         <button onclick="location.href='#create'">Create Now</button>
                     </form>
                     {% endif %}
+                    <!-- Option to manage a project, disabled if no project exists -->
                     <form class="button-card" action="/manage" method="POST">
                         <h2>Manage Your Project</h2>
                         <p>Keep track of your project's progress and members.</p>
@@ -42,6 +51,7 @@
                         <button onclick="location.href='#manage'" disabled>Manage Now</button>
                         {% endif %}
                     </form>
+                    <!-- Option to search for existing projects -->
                     <form class="button-card" action="/search" method="POST">
                         <h2>Search For a Project</h2>
                         <p>Find and join exciting projects that suit your interests.</p>
@@ -64,6 +74,7 @@
             </section>
         </div>
     </main>
+    <!-- Footer: Displays a copyright notice -->
     <footer class="footer">
         <p>&copy; 2025 Project Group Matcher. All Rights Reserved.</p>
     </footer>

@@ -1,3 +1,8 @@
+<!-- 
+    Profile Page
+    This HTML file renders a user's profile, including personal details, bio, 
+    GitHub repositories, and other links. It uses a template engine to dynamically populate the data.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,12 +19,13 @@
 
     <!-- Main Profile Container -->
     <div class="profile-container">
-        <!-- Left Section -->
+        <!-- Bottom Section -->
         <div class="profile-left">
             <p><strong>Course:</strong> {{ course }}</p>
             <p><strong>Enrolling Year:</strong> {{ enrolling_year }}</p>
             <p><strong>Email:</strong> {{ email }}</p>
             <p><strong>GitHub URL:</strong> <a href="{{ github_url }}" target="_blank">{{ github_url }}</a></p>
+            <!-- GitHub Repositories Table -->
             {% if repos %}
                 <table class="table">
                     <thead>
@@ -32,6 +38,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- Iterate over repositories and populate rows -->
                         {% for repo in repos %}
                             <tr>
                                 <td>{{ repo.repo }}</td>
@@ -53,7 +60,7 @@
             <p><strong>LinkedIn URL:</strong> <a href="{{ linkedin_url }}" target="_blank">{{ linkedin_url }}</a></p>
         </div>
 
-        <!-- Right Section -->
+        <!-- Upper Section -->
         <div class="profile-right">
             <h2>Bio</h2>
             <p>{{ bio }}</p>

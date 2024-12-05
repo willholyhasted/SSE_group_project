@@ -1,3 +1,8 @@
+<!-- 
+    This HTML file represents the login page for the "Imperial Project Matcher" application. 
+    It includes a header, a login form, and a registration link for new users. 
+    The page also supports displaying error messages via a JavaScript alert.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +23,7 @@
 </head>
 <body onload="showError('{{ error|safe }}')">
 
-    <!-- Header Block -->
+    <!-- Header: Displays the application name -->
     <div class="header">
         <h1>Imperial Project Matcher</h1>
     </div>
@@ -36,6 +41,7 @@
             <button type="submit">Login</button>
         </form>
 
+        <!-- Redirect link for users without an account -->
         <div class="register-link">
             <p>Don't have an account? <a href="/register">Register here</a></p>
         </div>

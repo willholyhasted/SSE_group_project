@@ -21,6 +21,7 @@ body {
     position: relative;
 }   
 
+/* Button within the header */
 .profile-button {
     position: absolute;
     top: 15px;
@@ -57,8 +58,9 @@ body {
     align-items: stretch;
 }
 
+/* Left Section */
 .left-section {
-    flex: 0.6; /* Reduce the width of the left section */
+    flex: 0.6; /* Takes up 60% of the width */
     padding: 2rem;
     background-color: #FFF9E6;
     border-radius: 8px;
@@ -70,24 +72,24 @@ body {
 }
 
 .main-title {
-    font-size: 2rem; /* 標題略小 */
+    font-size: 2rem; 
     font-weight: bold;
-    color: #333; /* 黑色字體 */
+    color: #333; 
     margin-bottom: 1.5rem;
 }
 
 .button-container-vertical {
     display: flex;
     flex-direction: column;
-    gap: 1rem; /* 卡片間距 */
-    flex-grow: 1; /* 撐滿剩餘空間 */
-    justify-content: space-evenly; /* 均分垂直空間 */
+    gap: 1rem; 
+    flex-grow: 1; 
+    justify-content: space-evenly; 
     width: 100%;
 }
 
 .button-card {
-    width: 90%; /* 卡片寬度90% */
-    background-color: #fff; /* 白色背景 */
+    width: 90%; 
+    background-color: #fff; 
     border: 2px solid #FFD700;
     border-radius: 10px;
     text-align: center;
@@ -102,9 +104,9 @@ body {
 }
 
 .highlighted {
-    color: #007BFF; /* 藍色字體 */
+    color: #007BFF; 
     font-weight: bold;
-    font-size: 1.8rem; /* 放大字體 */
+    font-size: 1.8rem; 
 }
 
 .button-card p {
@@ -150,6 +152,7 @@ button:disabled {
     height: auto; /* Let the section size adjust based on its content */
 }
 
+/* Scrollable Event List */
 .events-container {
     display: flex;
     flex-direction: column;
@@ -187,7 +190,7 @@ button:disabled {
 }
 
 .event-title {
-    font-family: 'Inter', serif; /* Elegant serif font */
+    font-family: 'Inter', serif; 
     font-size: 0.9rem;
     font-weight: bold;
     color: #555;
