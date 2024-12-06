@@ -7,6 +7,7 @@ certifi==2024.8.30
 charset-normalizer==3.4.0
 click==8.1.7
 Flask==3.1.0
+Flask-Testing==0.8.1
 idna==3.10
 importlib_resources==6.4.5
 itsdangerous==2.2.0
