@@ -26,7 +26,12 @@ if response.status_code == 200:
         category = entry.find("imperialnewsevents:category", namespaces)
         category = category.text if category is not None else "No category"
 
-        if category not in ["Workshop", "Seminar", "Practice session", "Training Course"]:
+        if category not in [
+            "Workshop",
+            "Seminar",
+            "Practice session",
+            "Training Course",
+        ]:
             continue  # Filter for workshops only
 
         # Extract title
@@ -83,12 +88,16 @@ if response.status_code == 200:
             # Convert to UK time format
             if formatted_start_date.date() == formatted_end_date.date():
                 # Same day: show date once and time range
-                display_time = (f"{formatted_start_date.strftime('%d-%m-%Y %H:%M')}-"
-                                f"{formatted_end_date.strftime('%H:%M')}")
+                display_time = (
+                    f"{formatted_start_date.strftime('%d-%m-%Y %H:%M')}-"
+                    f"{formatted_end_date.strftime('%H:%M')}"
+                )
             else:
                 # Different days: show full date and time range
-                display_time = (f"{formatted_start_date.strftime('%d-%m-%Y %H:%M')}-"
-                                f" {formatted_end_date.strftime('%d-%m-%Y %H:%M')}")
+                display_time = (
+                    f"{formatted_start_date.strftime('%d-%m-%Y %H:%M')}-"
+                    f" {formatted_end_date.strftime('%d-%m-%Y %H:%M')}"
+                )
         else:
             # Fallback to raw strings if parsing fails
             display_time = f"{start_date} - {end_date}"
