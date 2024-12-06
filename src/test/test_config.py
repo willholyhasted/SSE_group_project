@@ -5,4 +5,4 @@ TESTING = True
 DEBUG = True
 
 # Set a secret key for session handling
-## SECRET_KEY = "test_secret_key"
+# SECRET_KEY = "test_secret_key"

@@ -1,4 +1,3 @@
-import pytest
 from flask_testing import TestCase
 from unittest.mock import patch, MagicMock
 from src.app import app as app_module  # Make sure the path is correct
