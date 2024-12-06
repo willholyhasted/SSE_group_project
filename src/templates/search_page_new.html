@@ -55,7 +55,7 @@ Users can filter projects by field, view project details, and apply directly.
                     <h2>{{ project.project_name }}</h2>
                     <p><strong>Fields:</strong>
                         {{ project.fields  }}</p>
-                    <p class="description">{{ project.description }}</p>
+                    <!--<p class="description">{{ project.description }}</p> -->
                 </div>
                  <!-- Conditional rendering for application status -->
                 {% if project.status is none and project.applicant is none %}
