@@ -12,6 +12,7 @@ class TestApp(TestCase):
     """
     Test case for the Flask app.
     """
+
     def create_app(self):
         """
         Create and configure the app for testing.
@@ -25,7 +26,7 @@ class TestApp(TestCase):
         """
         response = self.client.get("/")
         self.assert200(response)  # Assert 200 status code
-        self.assertTemplateUsed('index.html')  # Check for expected template
+        self.assertTemplateUsed("index.html")  # Check for expected template
 
     @patch("src.app.close_db")  # Patch the correct target (src.app.close_db)
     def test_cleanup(self, mock_close_db):
@@ -42,7 +43,6 @@ class TestApp(TestCase):
         # Assert that close_db was called exactly once
         mock_close_db.assert_called_once()
 
-
     def test_blueprint_registration(self):
         """
         Test that all blueprints are registered correctly.
@@ -58,8 +58,9 @@ class TestApp(TestCase):
         response = self.client.get("/nonexistent_route")
         self.assert404(response)
 
-    
-    @patch("src.app_search_project.get_db")  # Mocking the get_db function to simulate database interaction
+    @patch(
+        "src.app_search_project.get_db"
+    )  # Mocking the get_db function to simulate database interaction
     def test_search_project(self, mock_get_db):
         """
         Test the search_project route to ensure it renders correctly with mock data.
@@ -77,7 +78,7 @@ class TestApp(TestCase):
             "field2": ["Field2A", "Field2B"],
             "field3": ["Field3A", "Field3B"],
             "applicant": ["user1", "user2"],
-            "status": ["Applied", "Pending"]
+            "status": ["Applied", "Pending"],
         }
 
         # Mocking Polars DataFrame behavior
@@ -88,9 +89,10 @@ class TestApp(TestCase):
         with patch("polars.read_database", return_value=mock_df):
             response = self.client.get("/search")
             self.assert200(response)
-            self.assertTemplateUsed("search_page_new.html")  # Checking the correct template is used
-            
-            
+            self.assertTemplateUsed(
+                "search_page_new.html"
+            )  # Checking the correct template is used
+
     @patch("src.app_search_project.get_db")
     def test_apply_project(self, mock_get_db):
         """
@@ -101,8 +103,9 @@ class TestApp(TestCase):
 
         # Simulating a form submission for applying to a project
         response = self.client.post("/apply_project", data={"project_id": 1})
-        self.assertEqual(response.location, "/search")  # Expect a redirect back to the search page
-
+        self.assertEqual(
+            response.location, "/search"
+        )  # Expect a redirect back to the search page
 
     @patch("src.app_search_project.get_db")
     def test_project_details(self, mock_get_db):
@@ -123,7 +126,7 @@ class TestApp(TestCase):
             "field1": ["Field1A"],
             "field2": ["Field2A"],
             "field3": ["Field3A"],
-            "email": ["user1@example.com"]
+            "email": ["user1@example.com"],
         }
 
         # Mocking Polars DataFrame behavior
@@ -134,9 +137,6 @@ class TestApp(TestCase):
         with patch("polars.read_database", return_value=mock_df):
             response = self.client.get("/project_details?project_id=1")
             self.assert200(response)
-            self.assertTemplateUsed("project_infopage.html")  # Checking the correct template is used
-
-
-
-
-
+            self.assertTemplateUsed(
+                "project_infopage.html"
+            )  # Checking the correct template is used

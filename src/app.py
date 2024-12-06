@@ -28,10 +28,9 @@ def cleanup(exception=None):
     # Call the close_db function to close the database connection
     close_db(exception)
 
+
 # Define a route for the home page ("/")
 @app.route("/")
 def index():
     # Render and return the "index.html" template when the home page is accessed
     return render_template("index.html")
-
-
