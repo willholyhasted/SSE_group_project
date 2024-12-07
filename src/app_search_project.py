@@ -20,6 +20,7 @@ from database.connection import get_db
 # Create a Flask Blueprint for the project search module
 search_bp = Blueprint("search", __name__)
 
+
 # Define a route for searching and listing projects
 @search_bp.route("/search", methods=["POST", "GET"])
 def search_project():
