@@ -11,6 +11,12 @@ import bcrypt
 from database.connection import get_db
 from .api import fetch_events
 
+# *************  DESCRIPTION: ********************************
+# This page handles requests from the user to login or register a new account
+# It checks if their username and password are stored in the user_info table
+# If the user does not have an account, it provides the option to create one
+# *************************************************************
+
 # Create a Flask Blueprint named "login" for the login page
 login_bp = Blueprint("login", __name__)
 

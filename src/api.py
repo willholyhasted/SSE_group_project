@@ -2,6 +2,14 @@ from datetime import datetime
 import requests
 import xml.etree.ElementTree as ET
 
+
+# *************  DESCRIPTION: ********************************
+# This file connects to the Imperial Atom API in order to
+# collect information on upcoming events/workshops within the university.
+# These events can be used for upskilling in order to strengthen an application
+# *************************************************************
+
+
 # URL of the Atom feed
 url = "https://www.imperial.ac.uk/events/feed/atom/?campus=south-kensington"
 
