@@ -26,6 +26,7 @@ ui_config.read("database/user_info.ini")
 # Create a Flask Blueprint for this module
 manage_bp = Blueprint("manage", __name__)
 
+
 # Define a route for managing project applications
 @manage_bp.route("/manage", methods=["GET", "POST"])
 def manage_project():
@@ -68,6 +69,7 @@ def manage_project():
         applicants=project_applications_dict,
     )
 
+
 # Define a route to accept or reject a project application
 @manage_bp.route("/update_status", methods=["POST"])
 def update_status():
@@ -91,6 +93,4 @@ def update_status():
     ui_cur.close()
 
     # Redirect back to the manage project page after updating the status
-    return redirect(
-        url_for("manage.manage_project")
-    )
+    return redirect(url_for("manage.manage_project"))
