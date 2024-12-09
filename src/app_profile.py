@@ -62,9 +62,10 @@ def create_view(username):
     TOKEN = os.getenv("GITHUB_PAT")
     headers = {"Authorization": f"token {TOKEN}"}
 
-
     # Make an API call to fetch the user's public repositories
-    response = requests.get(f"https://api.github.com/users/{input_name}/repos", headers=headers)
+    response = requests.get(
+        f"https://api.github.com/users/{input_name}/repos", headers=headers
+    )
 
     REPOS = []  # Initialize an empty list to store repository details
 
