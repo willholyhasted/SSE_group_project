@@ -19,6 +19,9 @@ body {
     font-size: 40px;
     letter-spacing: 0.4px;
     color: black;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
 /* Button within the header */
