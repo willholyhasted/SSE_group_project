@@ -59,7 +59,7 @@ def create_view(username):
 
     # Extract the GitHub username from the GitHub profile URL
     input_name = github_url.split("/")[3]
-    ## TOKEN = os.getenv("GITHUB_PAT")
+    # TOKEN = os.getenv("GITHUB_PAT")
     TOKEN = "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"
     headers = {"Authorization": f"token {TOKEN}"}
 
