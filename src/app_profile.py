@@ -5,6 +5,7 @@ from flask import session
 import requests
 import base64
 from datetime import datetime
+import os
 
 
 # *************  DESCRIPTION: ********************************
@@ -58,9 +59,12 @@ def create_view(username):
 
     # Extract the GitHub username from the GitHub profile URL
     input_name = github_url.split("/")[3]
+    TOKEN = os.getenv("GITHUB_PAT")
+    headers = {"Authorization": f"token {TOKEN}"}
+
 
     # Make an API call to fetch the user's public repositories
-    response = requests.get(f"https://api.github.com/users/{input_name}/repos")
+    response = requests.get(f"https://api.github.com/users/{input_name}/repos", headers=headers)
 
     REPOS = []  # Initialize an empty list to store repository details
 
