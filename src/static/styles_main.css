@@ -226,3 +226,75 @@ button:disabled {
     font-size: 0.9rem;
     margin-top: 2rem;
 }
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes buttonHoverEffect {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.05);
+    }
+}
+
+/* Apply animations to main sections */
+.left-section, .right-section {
+    animation: fadeIn 1s ease-in-out;
+}
+
+.button-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.button-card:hover {
+    animation: buttonHoverEffect 0.3s forwards;
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.button-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+.button-card:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.button-card:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.button-card:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.button-card:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+
+/* Smooth scrolling for the events container */
+.events-container {
+    transition: all 0.5s ease-in-out;
+}
+
+/* Profile button hover effect */
+.profile-button {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.profile-button:hover {
+    transform: translateY(-3px);
+}
