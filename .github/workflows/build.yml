@@ -1,19 +1,20 @@
 name: Build
+
 on: [push]
+
 jobs:
   python-install-dependency:
     runs-on: ubuntu-latest
-    steps: 
+    steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install dependecies
-        run: pip install -r requirements.txt 
-
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
   python-formatting:
-     needs: python-install-dependency
-     runs-on: ubuntu-latest
-     steps:
+    needs: python-install-dependency
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Python
@@ -40,10 +41,27 @@ jobs:
       - name: Run pytest
         run: python -m pytest --log-level=DEBUG src/test/. -vv
 
-     
+  run-app-profile:
+    needs: python-testing
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
+      - name: Run app_profile.py
+        env:
+          PAT: ${{ secrets.PAT }} # Pass the secret as an environment variable
+        run: python src/app_profile.py
 
   deploy-to-impaas:
-    needs: python-testing
+    needs: run-app-profile
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -54,4 +72,3 @@ jobs:
           app-name: wh1124-app
           deployment-token: ${{ secrets.IMPAAS_DEPLOY_TOKEN }}
           method: PLATFORM
-          # app wh1124-app
