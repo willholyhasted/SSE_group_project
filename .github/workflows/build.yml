@@ -53,6 +53,8 @@ jobs:
           python-version: 3.12
       - name: Install dependencies
         run: pip install -r requirements.txt
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
       - name: Run app_profile.py
         env:
           PAT: ${{ secrets.PAT }} # Pass the secret as an environment variable
