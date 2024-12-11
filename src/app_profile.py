@@ -1,5 +1,4 @@
 import polars as pl
-import os
 from flask import render_template, Blueprint
 from database.connection import get_db
 from flask import session
@@ -60,12 +59,9 @@ def create_view(username):
     # Extract the GitHub username from the GitHub profile URL
     input_name = github_url.split("/")[3]
 
-    pat = os.getenv('PAT')
-    headers = {"Authorization": f"Bearer {pat}"}
-    response = requests.get(f"https://api.github.com/users/{input_name}/repos", headers=headers)
-
     # Make an API call to fetch the user's public repositories
-    # response = requests.get(f"https://api.github.com/users/{input_name}/repos")
+    response = requests.get(
+        f"https://api.github.com/users/{input_name}/repos")
 
     REPOS = []  # Initialize an empty list to store repository details
 
@@ -76,10 +72,8 @@ def create_view(username):
         repos = []  # If the request fails, use an empty list
         print(f"Error: {response.status_code}")
 
-    i = 0
     # Iterate through the list of repositories
-    while i < 20 and i < len(repos):
-        repo = repos[i]  # Get the current repository
+    for repo in repos:
         full_name = repo[
             "full_name"
         ]  # Get the repository's full name (e.g., "username/repo_name")
@@ -96,18 +90,18 @@ def create_view(username):
 
         # Fetch additional repository details (e.g., star count, languages, and README)
         response_repo = requests.get(
-            f"https://api.github.com/repos/{full_name}", headers=headers
+            f"https://api.github.com/repos/{full_name}"
         )
         star = response_repo.json()["stargazers_count"]  # Get the star count
         response_language = requests.get(
-            f"https://api.github.com/repos/{full_name}/languages", headers=headers
+            f"https://api.github.com/repos/{full_name}/languages"
         )
         languages = (
             response_language.json()
         )  # Get the programming languages used
         languages_names = list(languages.keys())  # Extract language names
         response_readme = requests.get(
-            f"https://api.github.com/repos/{full_name}/readme", headers=headers
+            f"https://api.github.com/repos/{full_name}/readme"
         )
         readme = response_readme.json().get(
             "content", ""
@@ -124,8 +118,6 @@ def create_view(username):
                 "readme": readmetext,
             }
         )
-
-        i += 1
 
     # Render the "profile.html" template with user details and repository information
     return render_template(
